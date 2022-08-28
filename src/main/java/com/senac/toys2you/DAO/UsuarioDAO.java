@@ -4,10 +4,18 @@
  */
 package com.senac.toys2you.DAO;
 
+import java.sql.Connection;
+
+import com.senac.toys2you.Model.Usuario;
+
 /**
  *
  * @author raquel.ateixeira3
  */
-public class UsuarioDAO {
-    
+public interface UsuarioDAO {
+    public Connection connect(String urlConexao);
+    public void insert(String urlConexao, Usuario usuario);
+    public void update(String urlConexao, String login, String senha, int id);
+    public void getId(String urlConexao, int id);
+
 }
