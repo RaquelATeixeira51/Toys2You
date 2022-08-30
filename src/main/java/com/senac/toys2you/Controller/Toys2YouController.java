@@ -4,6 +4,8 @@
  */
 package com.senac.toys2you.Controller;
 
+import java.util.List;
+
 import com.senac.toys2you.DAO.UsuarioDAOImpl;
 import com.senac.toys2you.Model.Usuario;
 
@@ -19,5 +21,21 @@ public class Toys2YouController {
         usuarioDAOImpl.connect(urlConexao);
 
         usuarioDAOImpl.insert(urlConexao, usuario);
+    }
+
+    public void alteraUsuario(String urlConexao, String login, String senha, int id){
+        UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
+        usuarioDAOImpl.connect(urlConexao);
+
+        usuarioDAOImpl.update(urlConexao, login, senha, id);
+    }
+
+    public List<String> buscaLogin(String urlConexao, String login) {
+        UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
+        usuarioDAOImpl.connect(urlConexao);
+
+        List<String> r = usuarioDAOImpl.getLogin(urlConexao, login);
+        return r;
+
     }
 }

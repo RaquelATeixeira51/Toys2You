@@ -4,6 +4,8 @@
  */
 package com.senac.toys2you.Model;
 
+import java.sql.Date;
+
 /**
  *
  * @author raquel.ateixeira3
@@ -13,16 +15,26 @@ public class Movimento {
     private double total;
     private int qtProduto;
     private Tipo tipo;
+    private Date dataVenda;
 
     public Movimento() {
     }
 
-    public Movimento(int id, double total, int qtProduto, Tipo tipo) {
+    public Movimento(int id, double total, int qtProduto, Tipo tipo, Date dataVenda) {
         this.id = id;
         this.total = total;
         this.qtProduto = qtProduto;
         this.tipo = tipo;
+        this.dataVenda = dataVenda;
     }    
+
+    public Date getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(Date dataVenda) {
+        this.dataVenda = dataVenda;
+    }
     
     public int getId() {
         return id;
