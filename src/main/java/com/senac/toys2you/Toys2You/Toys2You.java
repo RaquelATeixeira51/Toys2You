@@ -5,6 +5,9 @@
 
 package com.senac.toys2you.Toys2You;
 
+import com.senac.toys2you.Controller.Toys2YouController;
+import com.senac.toys2you.Model.Usuario;
+
 /**
  *
  * @author raquel.ateixeira3
@@ -12,6 +15,11 @@ package com.senac.toys2you.Toys2You;
 public class Toys2You {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Toys2YouController toys2YouController = new Toys2YouController();
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+        usuario.setLogin("raquelat");
+        usuario.setSenha("oioi");
+        toys2YouController.AdicionaUsuario(usuario);
     }
 }
