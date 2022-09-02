@@ -30,12 +30,15 @@ public class Toys2YouController {
         usuarioDAOImpl.update(urlConexao, login, senha, id);
     }
 
-    public List<String> buscaLogin(String urlConexao, String login) {
+    public List<String> buscaLogin(String urlConexao, String login, String senha) {
         UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
         usuarioDAOImpl.connect(urlConexao);
 
-        List<String> r = usuarioDAOImpl.getLogin(urlConexao, login);
+        List<String> r = usuarioDAOImpl.getLogin(urlConexao, login, senha);
         return r;
 
+    }
+    public String getUrl(){
+        return urlConexao;
     }
 }

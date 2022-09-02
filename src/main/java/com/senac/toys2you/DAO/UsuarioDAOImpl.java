@@ -63,8 +63,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     }
 
     @Override
-    public List<String> getLogin(String urlConexao, String login) {
-        String sql = "SELECT * FROM usuario WHERE login=" + login;
+    public List<String> getLogin(String urlConexao, String login, String senha) {
+        String sql = "SELECT * FROM usuario WHERE login=" + login + "AND DS_SENHA = " + senha;
         List<String> l = new ArrayList<String>();
 
         try{
