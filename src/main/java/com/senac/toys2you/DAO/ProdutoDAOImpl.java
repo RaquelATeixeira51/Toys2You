@@ -9,6 +9,9 @@ import java.util.List;
 
 import com.senac.toys2you.Model.Produto;
 import com.senac.toys2you.Model.Tipo;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ProdutoDAOImpl implements ProdutoDAO{
     private Connection connection;
@@ -24,15 +27,15 @@ public class ProdutoDAOImpl implements ProdutoDAO{
         }
     }
     public void insert(String urlConexao, Produto produto) {
-        String sql = "INSERT INTO produto( fk_produto, qt_Produto) VALUES( ?, ?)";
+        String sql = "INSERT INTO produto(DS_PRODUTO , VL_TOTAL, DS_DESCRICAO, TG_TIPO ) VALUES( ?, ?, ?, ?)";
         
         try{
             Connection conexao = connect(urlConexao);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             // preparedStatement.setInt(1, estoque.getId());
-            preparedStatement.setInt(1, produto.getId());
-            preparedStatement.setString(2, produto.getNome());
+            preparedStatement.setString(1, produto.getNome());
+            preparedStatement.setDouble(2, produto.getValor());
             preparedStatement.setString(1, produto.getDescricao());
             preparedStatement.setString(2, produto.getTipo().name());
 
@@ -41,29 +44,79 @@ public class ProdutoDAOImpl implements ProdutoDAO{
             System.out.println(e.getMessage());
         }
     }
-    @Override
-    public void update(String urlConexao, int id, String nome, String descricao, double valor, Tipo tipo,
-            double tamanho, Date validade) {
-        // TODO Auto-generated method stub
+    
+    public void update(String urlConexao, int id, String nome, String descricao, double valor, Tipo tipo) {
+        String sql = "UPDATE TB_PRODUTO set DS_PRODUTO = ?, VL_TOTAL = ? , DS_DESCRICAO = ? , TG_TIPO = ? where PK_ID = ?";
+
+        try{
+            Connection conexao = connect(urlConexao);
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+
+            preparedStatement.setString(1, nome);
+            preparedStatement.setDouble(2, valor);
+            preparedStatement.setString(3, descricao);
+            preparedStatement.setString(4, tipo.name());
+            preparedStatement.setInt(5, id);
+
+            preparedStatement.executeUpdate();
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
         
     }
 
     @Override
     public void delete(String urlConexao, int id) {
-        // TODO Auto-generated method stub
-        
+        String sql = "DELETE * FROM TB_PRODUTO where PK_ID = ?";
+
+        try{
+            Connection conexao = connect(urlConexao);
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+
+            preparedStatement.setInt(1, id);
+            
+            preparedStatement.executeQuery();
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public List<String> getNome(String urlConexao, String nomeProduto) {
-        // TODO Auto-generated method stub
-        return null;
+        String sql = "SELECT * FROM TB_PRODUTO WHERE DS_PRODUTO=" + nomeProduto;
+        List<String> l = new ArrayList<String>();
+
+        try{
+            Connection conexao = connect(urlConexao);
+            Statement statement = conexao.createStatement();
+            ResultSet resultado = statement.executeQuery(sql);
+
+            while(resultado.next()){
+                l.add(resultado.getString("DS_PRODUTO"));
+            }
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return l;
     }
 
     @Override
     public List<String> getId(String urlConexao, int id) {
-        // TODO Auto-generated method stub
-        return null;
+        String sql = "SELECT * FROM TB_PRODUTO WHERE PK_ID=" + id;
+        List<String> l = new ArrayList<String>();
+
+        try{
+            Connection conexao = connect(urlConexao);
+            Statement statement = conexao.createStatement();
+            ResultSet resultado = statement.executeQuery(sql);
+
+            while(resultado.next()){
+                l.add(resultado.getString("PK_ID"));
+            }
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return l;
     }
     
 }
