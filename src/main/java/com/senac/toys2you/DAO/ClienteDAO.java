@@ -1,13 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.senac.toys2you.DAO;
 
-/**
- *
- * @author raquel.ateixeira3
- */
-public class ClienteDAO {
-    
+import com.senac.toys2you.Model.Cliente;
+import java.sql.Connection;
+import java.util.Date;
+import java.util.List;
+
+public interface ClienteDAO {
+    public Connection connect(String urlConexao);
+    public void insert(String urlConexao, Cliente cliente);
+    public void update(String urlConexao, int id, String nome, String cpf , int nrEndereco, String bairro, String cidade, int estado, int cep , int sexo, Date nascimento, int estCivil, String email, int Telefone);
+    public void delete(String urlConexao, int id);
+    public List<String> getNome(String urlConexao, String nome);
+    public List<String> getCpf(String urlConexao, String cpf);
 }

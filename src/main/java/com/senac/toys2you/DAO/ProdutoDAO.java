@@ -1,19 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.senac.toys2you.DAO;
 
 import java.sql.Connection;
 import java.util.List;
-
 import com.senac.toys2you.Model.Produto;
 import com.senac.toys2you.Model.Tipo;
 
-/**
- *
- * @author raquel.ateixeira3
- */
 public interface ProdutoDAO {
     public Connection connect(String urlConexao);
     public void insert(String urlConexao, Produto produto);
