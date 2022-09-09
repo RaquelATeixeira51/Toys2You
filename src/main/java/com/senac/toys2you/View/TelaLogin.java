@@ -78,7 +78,7 @@ public class TelaLogin extends javax.swing.JFrame {
         Toys2YouController toys = new Toys2YouController();
         
         
-        List<String> t = toys.buscaLogin(toys.getUrl(), txtDS_LOGIN.getText(), txtDS_SENHA.getText());
+        List<String> t = toys.buscaLogin(txtDS_LOGIN.getText(), txtDS_SENHA.getText());
         
         if(t.isEmpty()){
             showMessageDialog(this,"Login inexistente!");

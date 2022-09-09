@@ -20,6 +20,6 @@ public class Toys2You {
         usuario.setId(1);
         usuario.setLogin("raquelat");
         usuario.setSenha("oioi");
-        toys2YouController.AdicionaUsuario(usuario);
+        toys2YouController.adicionaUsuario(usuario);
     }
 }

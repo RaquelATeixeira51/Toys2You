@@ -152,7 +152,7 @@ public class TelaUsuarioInserir extends javax.swing.JFrame {
                 Usuario usuario =new Usuario();
                 usuario.setLogin(txtLogin.getText());
                 usuario.setSenha(txtSenha.getText());
-                toys.AdicionaUsuario(usuario);
+                toys.adicionaUsuario(usuario);
                 
                 new TelaLogin().show(true);
                 new TelaUsuarioInserir().show(false); 
