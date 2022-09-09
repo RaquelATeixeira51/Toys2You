@@ -5,8 +5,15 @@
 package com.senac.toys2you.Controller;
 
 import java.util.List;
+import java.sql.Date;
 import java.util.InputMismatchException;
+
+import com.senac.toys2you.DAO.ClienteDAOImpl;
+import com.senac.toys2you.DAO.ProdutoDAOImpl;
 import com.senac.toys2you.DAO.UsuarioDAOImpl;
+import com.senac.toys2you.Model.Cliente;
+import com.senac.toys2you.Model.Produto;
+import com.senac.toys2you.Model.Tipo;
 import com.senac.toys2you.Model.Usuario;
 
 /**
@@ -16,21 +23,21 @@ import com.senac.toys2you.Model.Usuario;
 public class Toys2YouController {
     String urlConexao = "";
 
-    public void AdicionaUsuario(Usuario usuario){
+    public void adicionaUsuario(Usuario usuario){
         UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
         usuarioDAOImpl.connect(urlConexao);
 
         usuarioDAOImpl.insert(urlConexao, usuario);
     }
 
-    public void alteraUsuario(String urlConexao, String login, String senha, int id){
+    public void alteraUsuario(String login, String senha, int id){
         UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
         usuarioDAOImpl.connect(urlConexao);
 
         usuarioDAOImpl.update(urlConexao, login, senha, id);
     }
 
-    public List<String> buscaLogin(String urlConexao, String login, String senha) {
+    public List<String> buscaLogin(String login, String senha) {
         UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
         usuarioDAOImpl.connect(urlConexao);
 
@@ -38,6 +45,74 @@ public class Toys2YouController {
         return r;
 
     }
+
+    public void adicionaCliente(Cliente cliente){
+        ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
+        clienteDAOImpl.connect(urlConexao);
+
+        clienteDAOImpl.insert(urlConexao, cliente);
+    }
+
+    public void alteraCliente(int id, String nome, String cpf , int nrEndereco, String bairro, String cidade, int estado, int cep , int sexo, Date nascimento, int estCivil, String email, int telefone){
+        ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
+        clienteDAOImpl.connect(urlConexao);
+
+        clienteDAOImpl.update(urlConexao, id, nome, cpf, nrEndereco, bairro, cidade, estado, cep, sexo, nascimento, estCivil, email, telefone);
+    }
+
+    public void deletaCliente(int id){
+        ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
+        clienteDAOImpl.connect(urlConexao);
+
+        clienteDAOImpl.delete(urlConexao, id);
+    }
+
+    public List<String> consultaCliente(String nome, String cpf){
+        ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
+        clienteDAOImpl.connect(urlConexao);
+
+        if(nome!=null){
+            List<String> r = clienteDAOImpl.getNome(urlConexao, nome);
+            return r;
+        }
+        List<String> r = clienteDAOImpl.getCpf(urlConexao, cpf);
+        return r;
+    }
+
+    public void adicionaProduto(Produto produto){
+        ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
+        produtoDAOImpl.connect(urlConexao);
+
+        produtoDAOImpl.insert(urlConexao, produto);
+    }
+
+    public void alteraProduto(int id, String nome, String descricao, double valor, Tipo tipo ){
+        ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
+        produtoDAOImpl.connect(urlConexao);
+
+        produtoDAOImpl.update(urlConexao, id, nome, descricao, valor, tipo);
+    }
+
+    public void deletaProduto(int id){
+        ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
+        produtoDAOImpl.connect(urlConexao);
+
+        produtoDAOImpl.delete(urlConexao, id);
+    }
+
+    public List<String> ConsultaProduto(String nomeProduto, int id){
+        ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
+        produtoDAOImpl.connect(urlConexao);
+
+        if(nomeProduto!=null){
+            List<String> r = produtoDAOImpl.getNome(urlConexao, nomeProduto);
+            return r;
+        }
+
+        List<String> r = produtoDAOImpl.getId(urlConexao, id);
+        return r;
+    }
+
     public String getUrl(){
         return urlConexao;
     }
