@@ -25,8 +25,9 @@ public class ProdutoDAOImpl implements ProdutoDAO{
             return null;
         }
     }
-    public void insert(String urlConexao, Produto produto) {
+    public void insert(String urlConexao, Produto produto, int tipo) {
         String sql = "INSERT INTO produto(DS_PRODUTO , VL_TOTAL, DS_DESCRICAO, TG_TIPO ) VALUES( ?, ?, ?, ?)";
+        
         
         try{
             Connection conexao = connect(urlConexao);
@@ -35,9 +36,10 @@ public class ProdutoDAOImpl implements ProdutoDAO{
             // preparedStatement.setInt(1, estoque.getId());
             preparedStatement.setString(1, produto.getNome());
             preparedStatement.setDouble(2, produto.getValor());
-            preparedStatement.setString(1, produto.getDescricao());
-            preparedStatement.setString(2, produto.getTipo().name());
+            preparedStatement.setString(3, produto.getDescricao());
+            preparedStatement.setInt(4, tipo);
 
+            
             preparedStatement.executeUpdate();
         } catch(SQLException e){
             System.out.println(e.getMessage());
@@ -47,6 +49,8 @@ public class ProdutoDAOImpl implements ProdutoDAO{
     public void update(String urlConexao, int id, String nome, String descricao, double valor, Tipo tipo) {
         String sql = "UPDATE TB_PRODUTO set DS_PRODUTO = ?, VL_TOTAL = ? , DS_DESCRICAO = ? , TG_TIPO = ? where PK_ID = ?";
 
+        
+        
         try{
             Connection conexao = connect(urlConexao);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
@@ -54,7 +58,7 @@ public class ProdutoDAOImpl implements ProdutoDAO{
             preparedStatement.setString(1, nome);
             preparedStatement.setDouble(2, valor);
             preparedStatement.setString(3, descricao);
-            preparedStatement.setString(4, tipo.name());
+            preparedStatement.setInt(4,tipo.getId());
             preparedStatement.setInt(5, id);
 
             preparedStatement.executeUpdate();
