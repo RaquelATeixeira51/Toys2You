@@ -68,8 +68,8 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtDS_NOME" pref="145" max="32767" attributes="0"/>
-                              <Component id="jTextField1" max="32767" attributes="0"/>
+                              <Component id="txtDS_NOMEPRODUTO" pref="145" max="32767" attributes="0"/>
+                              <Component id="txtPK_ID" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -83,12 +83,12 @@
                   <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPK_ID" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="txtDS_NOME" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtDS_NOMEPRODUTO" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -136,7 +136,7 @@
             <Property name="text" type="java.lang.String" value="Tipo:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtDS_NOME">
+        <Component class="javax.swing.JTextField" name="txtDS_NOMEPRODUTO">
         </Component>
         <Component class="javax.swing.JTextField" name="txtVL_VALOR">
         </Component>
@@ -159,7 +159,7 @@
             <Property name="text" type="java.lang.String" value="ID:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="txtPK_ID">
         </Component>
       </SubComponents>
     </Container>
