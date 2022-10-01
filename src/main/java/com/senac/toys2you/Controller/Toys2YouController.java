@@ -9,9 +9,12 @@ import java.sql.Date;
 import java.util.InputMismatchException;
 
 import com.senac.toys2you.DAO.ClienteDAOImpl;
+import com.senac.toys2you.DAO.EstoqueDAOImpl;
 import com.senac.toys2you.DAO.ProdutoDAOImpl;
+import com.senac.toys2you.DAO.TipoDAOImpl;
 import com.senac.toys2you.DAO.UsuarioDAOImpl;
 import com.senac.toys2you.Model.Cliente;
+import com.senac.toys2you.Model.Estoque;
 import com.senac.toys2you.Model.Produto;
 import com.senac.toys2you.Model.Tipo;
 import com.senac.toys2you.Model.Usuario;
@@ -79,11 +82,11 @@ public class Toys2YouController {
         return r;
     }
 
-    public void adicionaProduto(Produto produto){
+    public void adicionaProduto(Produto produto, int tipo){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
         produtoDAOImpl.connect(urlConexao);
 
-        produtoDAOImpl.insert(urlConexao, produto);
+        produtoDAOImpl.insert(urlConexao, produto, tipo);
     }
 
     public void alteraProduto(int id, String nome, String descricao, double valor, Tipo tipo ){
@@ -112,7 +115,75 @@ public class Toys2YouController {
         List<String> r = produtoDAOImpl.getId(urlConexao, id);
         return r;
     }
+    
+    public void adicionaEstoque(Estoque estoque){
+        EstoqueDAOImpl estoqueDAOImpl = new EstoqueDAOImpl();
+        estoqueDAOImpl.connect(urlConexao);
 
+        estoqueDAOImpl.insert(urlConexao, estoque);
+    }
+
+    public void alteraEstoque(int id, Produto produto,int qt_prod){
+        EstoqueDAOImpl estoqueDAOImpl = new EstoqueDAOImpl();
+        estoqueDAOImpl.connect(urlConexao);
+
+        estoqueDAOImpl.update(urlConexao, id, produto, qt_prod);
+    }
+
+    public void deletaEstoque(int id){
+        EstoqueDAOImpl estoqueDAOImpl = new EstoqueDAOImpl();
+        estoqueDAOImpl.connect(urlConexao);
+
+        estoqueDAOImpl.delete(urlConexao, id);
+    }
+
+    public List<String> ConsultaProdutoEstoque(String nomeProduto, int id){
+        ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
+        produtoDAOImpl.connect(urlConexao);
+
+        if(nomeProduto!=null){
+            List<String> r = produtoDAOImpl.getNome(urlConexao, nomeProduto);
+            return r;
+        }
+
+        List<String> r = produtoDAOImpl.getId(urlConexao, id);
+        return r;
+    }
+
+    
+     public void adicionaTipo(Tipo tipo){
+        TipoDAOImpl tipoDAOImpl = new TipoDAOImpl();
+        tipoDAOImpl.connect(urlConexao);
+
+        tipoDAOImpl.insert(urlConexao, tipo);
+    }
+
+    public void alteraTipo(int id, String tipo){
+        TipoDAOImpl tipoDAOImpl = new TipoDAOImpl();
+        tipoDAOImpl.connect(urlConexao);
+
+        tipoDAOImpl.update(urlConexao, id, tipo);
+    }
+
+    public void deletaTipo(int id){
+        TipoDAOImpl tipoDAOImpl = new TipoDAOImpl();
+        tipoDAOImpl.connect(urlConexao);
+        
+        tipoDAOImpl.delete(urlConexao, id);
+    }
+
+    public List<String> ConsultaTipo(String nomeTipo, int id){
+        ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
+        produtoDAOImpl.connect(urlConexao);
+
+        if(nomeTipo!=null){
+            List<String> r = produtoDAOImpl.getNome(urlConexao, nomeTipo);
+            return r;
+        }
+
+        List<String> r = produtoDAOImpl.getId(urlConexao, id);
+        return r;
+    }
     public String getUrl(){
         return urlConexao;
     }

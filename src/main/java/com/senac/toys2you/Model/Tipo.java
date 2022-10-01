@@ -8,8 +8,32 @@ package com.senac.toys2you.Model;
  *
  * @author raquel.ateixeira3
  */
-public enum Tipo {
-    FEMININO,
-    MASCULINO,
-    UNISSEX
+public class Tipo {
+    private int id;
+    private String tipo;
+
+    public Tipo() {
+    }
+
+    public Tipo(int id, String tipo) {
+        this.id = id;
+        this.tipo = tipo;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
 }
