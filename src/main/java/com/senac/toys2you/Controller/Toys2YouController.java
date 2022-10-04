@@ -10,14 +10,19 @@ import java.util.InputMismatchException;
 
 import com.senac.toys2you.DAO.ClienteDAOImpl;
 import com.senac.toys2you.DAO.EstoqueDAOImpl;
+import com.senac.toys2you.DAO.LogDAO;
+import com.senac.toys2you.DAO.LogDAOImpl;
+import com.senac.toys2you.DAO.MovimentoDAOImpl;
 import com.senac.toys2you.DAO.ProdutoDAOImpl;
 import com.senac.toys2you.DAO.TipoDAOImpl;
 import com.senac.toys2you.DAO.UsuarioDAOImpl;
 import com.senac.toys2you.Model.Cliente;
 import com.senac.toys2you.Model.Estoque;
+import com.senac.toys2you.Model.Movimento;
 import com.senac.toys2you.Model.Produto;
 import com.senac.toys2you.Model.Tipo;
 import com.senac.toys2you.Model.Usuario;
+import com.senac.toys2you.Model.Venda;
 
 /**
  *
@@ -303,14 +308,66 @@ public class Toys2YouController {
             }
         }
 
-        public static String imprimeCPF(String CPF) {
-            return(CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "." +
-            CPF.substring(6, 9) + "-" + CPF.substring(9, 11));
-        }
+    public static String imprimeCPF(String CPF) {
+        return(CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "." +
+        CPF.substring(6, 9) + "-" + CPF.substring(9, 11));
+    }
         
-        public String LoginSupervisor(){
-            String login = "Spy12345";
-            return login;
-        }
+    public String LoginSupervisor(){
+        String login = "Spy12345";
+        return login;
+    }
+        
+    public void logErro(String erro){
+        LogDAOImpl logDAO = new LogDAOImpl();
+        logDAO.connect(urlConexao);
+
+        logDAO.insert(urlConexao, erro);
+    }
+        
+    public void adicionaMovimento(Movimento movimento){
+        MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
+        movimentoDAOImpl.connect(urlConexao);
+
+        movimentoDAOImpl.insert(urlConexao, movimento);
+    }
+    public void adicionaVenda(Venda venda){
+        MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
+        movimentoDAOImpl.connect(urlConexao);
+
+        movimentoDAOImpl.insertVenda(urlConexao, venda);
+    }
+
+    public void deletaMovimento(int id){
+        MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
+        movimentoDAOImpl.connect(urlConexao);
+        
+        movimentoDAOImpl.delete(urlConexao, id);
+    }
+    
+    public void deletaVenda(int id){
+        MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
+        movimentoDAOImpl.connect(urlConexao);
+        
+        movimentoDAOImpl.deleteVenda(urlConexao, id);
+    }
+
+    public List<String> consultaMovimento(int venda){
+        MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
+        movimentoDAOImpl.connect(urlConexao);
+
+        List<String> r = movimentoDAOImpl.getMovimentoVenda(urlConexao, venda);
+       
+        return r;
+    }
+    
+    public List<String> consultaVenda(int venda){
+        MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
+        movimentoDAOImpl.connect(urlConexao);
+
+        List<String> r = movimentoDAOImpl.getVenda(urlConexao, venda);
+       
+        return r;
+    }
         
 }
