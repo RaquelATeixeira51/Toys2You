@@ -12,6 +12,7 @@ import java.sql.Date;
  */
 public class Movimento {
     private int id;
+    private int produto;
     private double total;
     private int qtProduto;
     private Tipo tipo;
@@ -27,7 +28,12 @@ public class Movimento {
         this.tipo = tipo;
         this.dataVenda = dataVenda;
     }    
-
+    
+    public int getProduto(){
+        return produto;
+    }
+    
+    
     public Date getDataVenda() {
         return dataVenda;
     }
@@ -54,6 +60,10 @@ public class Movimento {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public void setProduto(int produto) {
+        this.produto = produto;
     }
 
     public void setTotal(double total) {

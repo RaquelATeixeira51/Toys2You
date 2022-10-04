@@ -22,13 +22,15 @@ public class Venda {
     private String estado;
     private Date dataPagamento;
     private Date vencimentoPagamento;
-    private String parcelas;
+    private int parcelas;
     private int numCartao;
+    private int cliente;
+    private int vendedor;
 
     public Venda() {
     }
 
-    public Venda(int id, String endEntrega, int numEntrega, double valorTotal, int formaPagamento, int cepEntrega, String bairroEntrega, String cidade, String estado, Date dataPagamento, Date vencimentoPagamento, String parcelas, int numCartao) {
+    public Venda(int id, String endEntrega, int numEntrega, double valorTotal, int formaPagamento, int cepEntrega, String bairroEntrega, String cidade, String estado, Date dataPagamento, Date vencimentoPagamento, int parcelas, int numCartao) {
         this.id = id;
         this.endEntrega = endEntrega;
         this.numEntrega = numEntrega;
@@ -44,6 +46,13 @@ public class Venda {
         this.numCartao = numCartao;
     }
     
+    public int getVendedor(){
+        return vendedor;
+    }
+    
+    public int getCliente(){
+        return cliente;
+    }
     public void setId(int id) {
         this.id = id;
     }
@@ -88,7 +97,7 @@ public class Venda {
         this.vencimentoPagamento = vencimentoPagamento;
     }
 
-    public void setParcelas(String parcelas) {
+    public void setParcelas(int parcelas) {
         this.parcelas = parcelas;
     }
 
@@ -142,7 +151,7 @@ public class Venda {
         return vencimentoPagamento;
     }
 
-    public String getParcelas() {
+    public int getParcelas() {
         return parcelas;
     }
 
