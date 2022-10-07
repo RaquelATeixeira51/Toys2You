@@ -1,5 +1,6 @@
 package com.senac.toys2you.DAO;
 
+import com.senac.toys2you.Controller.Toys2YouController;
 import com.senac.toys2you.Model.Cliente;
 import java.sql.Connection;
 import java.sql.Date;
@@ -14,13 +15,15 @@ import java.util.List;
 public class ClienteDAOImpl implements ClienteDAO{
     private Connection connection;
 
+    Toys2YouController toy = new Toys2YouController(); 
+    
     @Override
     public Connection connect(String urlConexao) {
         try{
             this.connection = DriverManager.getConnection(urlConexao);
             return connection;
         } catch(SQLException e){
-            System.out.println(e.getMessage());
+            toy.logErro(e.getMessage());
             return null;
         }
     }
@@ -46,7 +49,7 @@ public class ClienteDAOImpl implements ClienteDAO{
             
             preparedStatement.executeUpdate();
         } catch(SQLException e){
-            System.out.println(e.getMessage());
+            toy.logErro(e.getMessage());
         }
     }
     
@@ -74,7 +77,7 @@ public class ClienteDAOImpl implements ClienteDAO{
 
             preparedStatement.executeUpdate();
         } catch(SQLException e){
-            System.out.println(e.getMessage());
+            toy.logErro(e.getMessage());
         }
         
     }
@@ -91,7 +94,7 @@ public class ClienteDAOImpl implements ClienteDAO{
             
             preparedStatement.executeQuery();
         } catch(SQLException e){
-            System.out.println(e.getMessage());
+            toy.logErro(e.getMessage());
         }
     }
 
@@ -109,7 +112,7 @@ public class ClienteDAOImpl implements ClienteDAO{
                 l.add(resultado.getString("DS_NOME"));
             }
         } catch(SQLException e){
-            System.out.println(e.getMessage());
+            toy.logErro(e.getMessage());
         }
         return l;
     }
@@ -128,7 +131,7 @@ public class ClienteDAOImpl implements ClienteDAO{
                 l.add(resultado.getString("NR_CPF"));
             }
         } catch(SQLException e){
-            System.out.println(e.getMessage());
+            toy.logErro(e.getMessage());
         }
         return l;
     }
