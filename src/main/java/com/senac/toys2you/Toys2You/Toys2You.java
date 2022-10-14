@@ -18,8 +18,8 @@ public class Toys2You {
         Toys2YouController toys2YouController = new Toys2YouController();
         Usuario usuario = new Usuario();
         usuario.setId(1);
-        usuario.setLogin("raquelat");
-        usuario.setSenha("oioi");
+        usuario.setEmail("raquelat");
+        usuario.setPassword("oioi");
         toys2YouController.adicionaUsuario(usuario);
     }
 }

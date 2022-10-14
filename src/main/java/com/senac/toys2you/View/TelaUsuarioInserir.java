@@ -182,8 +182,8 @@ public class TelaUsuarioInserir extends javax.swing.JFrame {
             }
             if(txtDS_SENHASUPER.getText().equals(toys.LoginSupervisor())){
                 Usuario usuario =new Usuario();
-                usuario.setLogin(txtDS_LOGIN.getText());
-                usuario.setSenha(txtDS_SENHA.getText());
+                usuario.setEmail(txtDS_LOGIN.getText());
+                usuario.setPassword(txtDS_SENHA.getText());
                 toys.adicionaUsuario(usuario);
                 
                 new TelaLogin().show(true);

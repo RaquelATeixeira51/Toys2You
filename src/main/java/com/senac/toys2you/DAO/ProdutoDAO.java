@@ -6,10 +6,10 @@ import com.senac.toys2you.Model.Produto;
 import com.senac.toys2you.Model.Tipo;
 
 public interface ProdutoDAO {
-    public Connection connect(String urlConexao);
-    public void insert(String urlConexao, Produto produto,int tipo);
-    public void update(String urlConexao, int id, String nome, String descricao, double valor, Tipo tipo );
-    public void delete(String urlConexao, int id);
-    public List<String> getNome(String urlConexao, String nomeProduto);
-    public List<String> getId(String urlConexao, int id);
+    public Connection connect(String urlConexao, String login, String senha);
+    public void insert(String urlConexao, String login, String senha, Produto produto,int tipo);
+    public void update(String urlConexao, String login, String senha, int id, String nome, String descricao, double valor, Tipo tipo );
+    public void delete(String urlConexao, String login, String senha, int id);
+    public List<String> getNome(String urlConexao, String login, String senha, String nomeProduto);
+    public List<String> getId(String urlConexao, String login, String senha, int id);
 }

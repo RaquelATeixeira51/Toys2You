@@ -4,8 +4,8 @@ import com.senac.toys2you.Model.Tipo;
 import java.sql.Connection;
 
 public interface TipoDAO {
-    public Connection connect(String urlConexao);
-    public void insert(String urlConexao, Tipo tipo);
-    public void update(String urlConexao, int id, String tipo);
-    public void delete(String urlConexao, int id);
+    public Connection connect(String urlConexao, String login, String senha);
+    public void insert(String urlConexao, String login, String senha, Tipo tipo);
+    public void update(String urlConexao, String login, String senha, int id, String tipo);
+    public void delete(String urlConexao, String login, String senha, int id);
 }

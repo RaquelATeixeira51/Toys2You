@@ -14,9 +14,9 @@ import com.senac.toys2you.Model.Usuario;
  * @author raquel.ateixeira3
  */
 public interface UsuarioDAO {
-    public Connection connect(String urlConexao);
-    public void insert(String urlConexao, Usuario usuario);
-    public void update(String urlConexao, String login, String senha, int id);
-    public List<String> getLogin(String urlConexao, String login, String senha);
+    public Connection connect(String urlConexao, String login, String senha);
+    public void insert(String urlConexao, String login, String senha, Usuario usuario);
+    public void update(String urlConexao, String login, String senha, int id, String email, String password);
+    public List<String> getLogin(String urlConexao, String login, String senha, String email, String password);
 
 }

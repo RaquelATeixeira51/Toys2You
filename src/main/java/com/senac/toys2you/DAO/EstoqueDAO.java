@@ -14,9 +14,9 @@ import com.senac.toys2you.Model.Produto;
  * @author raquel.ateixeira3
  */
 public interface EstoqueDAO {
-    public Connection connect(String urlConexao);
-    public void insert(String urlConexao, Estoque estoque);
-    public void update(String urlConexao, int id, Produto produto, int qtProduto);
-    public void delete(String urlConexao, int id);
-    public List<String> getNomeProduto(String urlConexao, String nomeProduto);
+    public Connection connect(String urlConexao, String login, String senha);
+    public void insert(String urlConexao, String login, String senha, Estoque estoque);
+    public void update(String urlConexao, String login, String senha, int id, Produto produto, int qtProduto);
+    public void delete(String urlConexao, String login, String senha, int id);
+    public List<String> getNomeProduto(String urlConexao, String login, String senha, String nomeProduto);
 }

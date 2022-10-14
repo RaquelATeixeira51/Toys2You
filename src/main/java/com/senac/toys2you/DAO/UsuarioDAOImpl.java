@@ -15,9 +15,9 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     private Connection connection;
 
     @Override
-    public Connection connect(String urlConexao) {
+    public Connection connect(String urlConexao, String login, String senha) {
         try{
-            this.connection = DriverManager.getConnection(urlConexao);
+            this.connection = DriverManager.getConnection(urlConexao, login, senha);
             return connection;
         } catch(SQLException e){
             System.out.println(e.getMessage());
@@ -26,16 +26,16 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     }
 
     @Override
-    public void insert(String urlConexao, Usuario usuario) {
+    public void insert(String urlConexao, String login, String senha, Usuario usuario) {
         String sql = "INSERT INTO usuario(id, login, senha) VALUES(?, ?, ?, ?)";
         
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             preparedStatement.setInt(1, usuario.getId());
-            preparedStatement.setString(2, usuario.getLogin());
-            preparedStatement.setString(3, usuario.getSenha());
+            preparedStatement.setString(2, usuario.getEmail());
+            preparedStatement.setString(3, usuario.getPassword());
 
             preparedStatement.executeUpdate();
         } catch(SQLException e){
@@ -44,15 +44,15 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     }
 
     @Override
-    public void update(String urlConexao, String login, String senha, int id) {
+    public void update(String urlConexao, String login, String senha, int id, String email, String password) {
         String sql = "UPDATE usuario set login = ?, senha = ? where id = ?";
 
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
-            preparedStatement.setString(1, login);
-            preparedStatement.setString(2, senha);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
             preparedStatement.setInt(3, id);
 
             preparedStatement.executeUpdate();
@@ -63,17 +63,17 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     }
 
     @Override
-    public List<String> getLogin(String urlConexao, String login, String senha) {
-        String sql = "SELECT * FROM usuario WHERE login=" + login + "AND DS_SENHA = " + senha;
+    public List<String> getLogin(String urlConexao, String login, String senha, String email, String password) {
+        String sql = "SELECT * FROM usuario WHERE login=" + email + "AND DS_SENHA = " + password;
         List<String> l = new ArrayList<String>();
 
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             Statement statement = conexao.createStatement();
             ResultSet resultado = statement.executeQuery(sql);
 
             while(resultado.next()){
-                l.add(resultado.getString("login"));
+                l.add(resultado.getString("email"));
             }
         } catch(SQLException e){
             System.out.println(e.getMessage());

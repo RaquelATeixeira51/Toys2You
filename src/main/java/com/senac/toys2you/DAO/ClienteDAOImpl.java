@@ -18,20 +18,22 @@ public class ClienteDAOImpl implements ClienteDAO{
     Toys2YouController toy = new Toys2YouController(); 
     
     @Override
-    public Connection connect(String urlConexao) {
+    public Connection connect(String urlConexao, String login, String senha) {
         try{
-            this.connection = DriverManager.getConnection(urlConexao);
+            this.connection = DriverManager.getConnection(urlConexao, login, senha);
             return connection;
         } catch(SQLException e){
             toy.logErro(e.getMessage());
             return null;
         }
     }
-    public void insert(String urlConexao, Cliente cliente) {
+    
+    @Override
+    public void insert(String urlConexao, String login, String senha, Cliente cliente) {
         String sql = "INSERT INTO TB_CLIENTE(DS_NOME , NR_CPF, NR_NUMEROEND, DS_BAIRRO, DS_CIDADE, TG_ESTADO, NR_CEP, TG_SEXO, DT_NASCIMENTO, TG_ESTCIVIL, DS_EMAIL, NR_TELEFONE) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             // preparedStatement.setInt(1, estoque.getId());
@@ -53,11 +55,12 @@ public class ClienteDAOImpl implements ClienteDAO{
         }
     }
     
-    public void update(String urlConexao, int id, String nome, String cpf , int nrEndereco, String bairro, String cidade, int estado, int cep , int sexo, java.util.Date nascimento, int estCivil, String email, int telefone) {
+    @Override
+    public void update(String urlConexao, String login, String senha, int id, String nome, String cpf , int nrEndereco, String bairro, String cidade, int estado, int cep , int sexo, java.util.Date nascimento, int estCivil, String email, int telefone) {
         String sql = "UPDATE TB_PRODUTO set DS_NOME = ? , NR_CPF = ?, NR_NUMEROEND = ?, DS_BAIRRO = ?, DS_CIDADE = ?, TG_ESTADO = ?, NR_CEP = ?, TG_SEXO = ?, DT_NASCIMENTO = ?, TG_ESTCIVIL = ?, DS_EMAIL = ?, NR_TELEFONE = ? where PK_ID = ?";
 
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             // preparedStatement.setInt(1, estoque.getId());
@@ -83,11 +86,11 @@ public class ClienteDAOImpl implements ClienteDAO{
     }
 
     @Override
-    public void delete(String urlConexao, int id) {
+    public void delete(String urlConexao, String login, String senha, int id) {
         String sql = "DELETE * FROM TB_CLIENTE where PK_ID = ?";
 
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             preparedStatement.setInt(1, id);
@@ -99,12 +102,12 @@ public class ClienteDAOImpl implements ClienteDAO{
     }
 
     @Override
-    public List<String> getNome(String urlConexao, String nome) {
+    public List<String> getNome(String urlConexao, String login, String senha, String nome) {
         String sql = "SELECT * FROM TB_CLIENTE WHERE DS_NOME=" + nome;
         List<String> l = new ArrayList<String>();
 
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             Statement statement = conexao.createStatement();
             ResultSet resultado = statement.executeQuery(sql);
 
@@ -118,12 +121,12 @@ public class ClienteDAOImpl implements ClienteDAO{
     }
 
     @Override
-    public List<String> getCpf(String urlConexao, String cpf) {
+    public List<String> getCpf(String urlConexao, String login, String senha, String cpf) {
         String sql = "SELECT * FROM TB_CLIENTE WHERE NR_CPF=" + cpf;
         List<String> l = new ArrayList<String>();
 
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             Statement statement = conexao.createStatement();
             ResultSet resultado = statement.executeQuery(sql);
 

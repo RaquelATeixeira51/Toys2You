@@ -16,21 +16,21 @@ public class ProdutoDAOImpl implements ProdutoDAO{
     private Connection connection;
 
     @Override
-    public Connection connect(String urlConexao) {
+    public Connection connect(String urlConexao, String login, String senha) {
         try{
-            this.connection = DriverManager.getConnection(urlConexao);
+            this.connection = DriverManager.getConnection(urlConexao, login, senha);
             return connection;
         } catch(SQLException e){
             System.out.println(e.getMessage());
             return null;
         }
     }
-    public void insert(String urlConexao, Produto produto, int tipo) {
+    public void insert(String urlConexao, String login, String senha, Produto produto, int tipo) {
         String sql = "INSERT INTO produto(DS_PRODUTO , VL_TOTAL, DS_DESCRICAO, TG_TIPO ) VALUES( ?, ?, ?, ?)";
         
         
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             // preparedStatement.setInt(1, estoque.getId());
@@ -46,13 +46,13 @@ public class ProdutoDAOImpl implements ProdutoDAO{
         }
     }
     
-    public void update(String urlConexao, int id, String nome, String descricao, double valor, Tipo tipo) {
+    public void update(String urlConexao, String login, String senha, int id, String nome, String descricao, double valor, Tipo tipo) {
         String sql = "UPDATE TB_PRODUTO set DS_PRODUTO = ?, VL_TOTAL = ? , DS_DESCRICAO = ? , TG_TIPO = ? where PK_ID = ?";
 
         
         
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             preparedStatement.setString(1, nome);
@@ -69,11 +69,11 @@ public class ProdutoDAOImpl implements ProdutoDAO{
     }
 
     @Override
-    public void delete(String urlConexao, int id) {
+    public void delete(String urlConexao, String login, String senha, int id) {
         String sql = "DELETE * FROM TB_PRODUTO where PK_ID = ?";
 
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             preparedStatement.setInt(1, id);
@@ -85,12 +85,12 @@ public class ProdutoDAOImpl implements ProdutoDAO{
     }
 
     @Override
-    public List<String> getNome(String urlConexao, String nomeProduto) {
+    public List<String> getNome(String urlConexao, String login, String senha, String nomeProduto) {
         String sql = "SELECT * FROM TB_PRODUTO WHERE DS_PRODUTO=" + nomeProduto;
         List<String> l = new ArrayList<String>();
 
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             Statement statement = conexao.createStatement();
             ResultSet resultado = statement.executeQuery(sql);
 
@@ -104,12 +104,12 @@ public class ProdutoDAOImpl implements ProdutoDAO{
     }
 
     @Override
-    public List<String> getId(String urlConexao, int id) {
+    public List<String> getId(String urlConexao, String login, String senha, int id) {
         String sql = "SELECT * FROM TB_PRODUTO WHERE PK_ID=" + id;
         List<String> l = new ArrayList<String>();
 
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             Statement statement = conexao.createStatement();
             ResultSet resultado = statement.executeQuery(sql);
 

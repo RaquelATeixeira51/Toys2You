@@ -18,9 +18,9 @@ public class MovimentoDAOImpl implements MovimentoDAO{
     Toys2YouController toy = new Toys2YouController();
 
     @Override
-    public Connection connect(String urlConexao) {
+    public Connection connect(String urlConexao, String login, String senha) {
         try{
-            this.connection = DriverManager.getConnection(urlConexao);
+            this.connection = DriverManager.getConnection(urlConexao, login, senha);
             return connection;
         } catch(SQLException e){
             System.out.println(e.getMessage());
@@ -29,11 +29,11 @@ public class MovimentoDAOImpl implements MovimentoDAO{
     }
 
     @Override
-    public void insert(String urlConexao, Movimento movimento) {
+    public void insert(String urlConexao, String login, String senha, Movimento movimento) {
         String sql = "INSERT INTO TB_MOVIMENTO( FK_PRODUTO, VL_TOTAL, QT_PRODUTO ) VALUES( ?, ?, ?)";
         
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             preparedStatement.setInt(1, movimento.getProduto());
@@ -47,11 +47,11 @@ public class MovimentoDAOImpl implements MovimentoDAO{
     }
     
     @Override
-    public void insertVenda(String urlConexao, Venda venda) {
+    public void insertVenda(String urlConexao, String login, String senha, Venda venda) {
         String sql = "INSERT INTO TB_MOVIMENTO( FK_CLIENTE, FK_VENDEDOR, DS_ENDERECO, NR_ENDERECO, NR_CEP,DS_BAIRRO,DS_CIDADE,DS_ESTADO,DT_PAGAMENTO,DT_VENCIMENTO,QT_PARCELAS,NR_CARTAO, VL_TOTAL ) VALUES( ?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?, ?)";
         
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             preparedStatement.setInt(1, venda.getCliente());
@@ -75,10 +75,10 @@ public class MovimentoDAOImpl implements MovimentoDAO{
     }
 
     @Override
-    public void delete(String urlConexao, int id) {
+    public void delete(String urlConexao, String login, String senha, int id) {
         String sql = "DELETE FROM TB_MOVIMENTO WHERE pk_id = ?";
         try{
-            Connection conexaco = connect(urlConexao);
+            Connection conexaco = connect(urlConexao, login, senha);
             PreparedStatement pstm = conexaco.prepareStatement(sql);
 
             pstm.setInt(1, id);
@@ -91,10 +91,10 @@ public class MovimentoDAOImpl implements MovimentoDAO{
     }
     
     @Override
-    public void deleteVenda(String urlConexao, int id) {
+    public void deleteVenda(String urlConexao, String login, String senha, int id) {
         String sql = "DELETE FROM TB_VENDA WHERE pk_id = ?";
         try{
-            Connection conexaco = connect(urlConexao);
+            Connection conexaco = connect(urlConexao, login, senha);
             PreparedStatement pstm = conexaco.prepareStatement(sql);
 
             pstm.setInt(1, id);
@@ -107,11 +107,11 @@ public class MovimentoDAOImpl implements MovimentoDAO{
     }
 
     @Override
-    public List<String> getMovimentoVenda(String urlConexao, int venda) {
+    public List<String> getMovimentoVenda(String urlConexao, String login, String senha, int venda) {
         String sql = "SELECT * FROM TB_MOVIMENTO WHERE FK_VENDA =" + venda;
         List<String> l = new ArrayList<String>();
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             Statement statement = conexao.createStatement();
             ResultSet resultado = statement.executeQuery(sql);
 
@@ -125,11 +125,11 @@ public class MovimentoDAOImpl implements MovimentoDAO{
     }
     
     @Override
-    public List<String> getVenda(String urlConexao, int venda) {
+    public List<String> getVenda(String urlConexao, String login, String senha, int venda) {
         String sql = "SELECT * FROM TB_VENDA WHERE FK_VENDA =" + venda;
         List<String> l = new ArrayList<String>();
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             Statement statement = conexao.createStatement();
             ResultSet resultado = statement.executeQuery(sql);
 

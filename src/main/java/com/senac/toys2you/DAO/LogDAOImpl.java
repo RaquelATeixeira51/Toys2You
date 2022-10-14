@@ -9,9 +9,9 @@ public class LogDAOImpl implements LogDAO {
     private Connection connection;
 
     @Override
-    public Connection connect(String urlConexao) {
+    public Connection connect(String urlConexao, String login, String senha) {
         try{
-            this.connection = DriverManager.getConnection(urlConexao);
+            this.connection = DriverManager.getConnection(urlConexao, login, senha);
             return connection;
         } catch(SQLException e){
             System.out.println(e.getMessage());
@@ -20,11 +20,11 @@ public class LogDAOImpl implements LogDAO {
     }
     
     @Override
-    public void insert(String urlConexao, String log) {
+    public void insert(String urlConexao, String login, String senha, String log) {
         String sql = "INSERT INTO estoque( DS_ERRO) VALUES(" + log + ")";
         
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             preparedStatement.executeUpdate();

@@ -17,9 +17,9 @@ public class EstoqueDAOImpl implements EstoqueDAO{
     private Connection connection;
 
     @Override
-    public Connection connect(String urlConexao) {
+    public Connection connect(String urlConexao, String login, String senha) {
         try{
-            this.connection = DriverManager.getConnection(urlConexao);
+            this.connection = DriverManager.getConnection(urlConexao, login, senha);
             return connection;
         } catch(SQLException e){
             System.out.println(e.getMessage());
@@ -28,11 +28,11 @@ public class EstoqueDAOImpl implements EstoqueDAO{
     }
 
     @Override
-    public void insert(String urlConexao, Estoque estoque) {
+    public void insert(String urlConexao, String login, String senha, Estoque estoque) {
         String sql = "INSERT INTO estoque( fk_produto, qt_Produto) VALUES( ?, ?)";
         
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             // preparedStatement.setInt(1, estoque.getId());
@@ -46,11 +46,11 @@ public class EstoqueDAOImpl implements EstoqueDAO{
     }
 
     @Override
-    public void update(String urlConexao, int id, Produto produto, int qtProduto) {
+    public void update(String urlConexao, String login, String senha, int id, Produto produto, int qtProduto) {
         String sql = "UPDATE tb_estoque set fk_produto = ?, qt_estoque = ? where pk_id = ?";
 
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             preparedStatement.setInt(1, produto.getId());
@@ -64,10 +64,10 @@ public class EstoqueDAOImpl implements EstoqueDAO{
     }
 
     @Override
-    public void delete(String urlConexao, int id) {
+    public void delete(String urlConexao, String login, String senha, int id) {
         String sql = "DELETE FROM tb_estoque WHERE pk_id = ?";
         try{
-            Connection conexaco = connect(urlConexao);
+            Connection conexaco = connect(urlConexao, login, senha);
             PreparedStatement pstm = conexaco.prepareStatement(sql);
 
             pstm.setInt(1, id);
@@ -80,11 +80,11 @@ public class EstoqueDAOImpl implements EstoqueDAO{
     }
 
     @Override
-    public List<String> getNomeProduto(String urlConexao, String nomeProduto) {
+    public List<String> getNomeProduto(String urlConexao, String login, String senha, String nomeProduto) {
         String sql = "SELECT * FROM usuario WHERE id =" + nomeProduto;
         List<String> l = new ArrayList<String>();
         try{
-            Connection conexao = connect(urlConexao);
+            Connection conexao = connect(urlConexao, login, senha);
             Statement statement = conexao.createStatement();
             ResultSet resultado = statement.executeQuery(sql);
 

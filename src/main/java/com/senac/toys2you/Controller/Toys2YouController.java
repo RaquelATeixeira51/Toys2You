@@ -29,164 +29,166 @@ import com.senac.toys2you.Model.Venda;
  * @author raquel.ateixeira3
  */
 public class Toys2YouController {
-    String urlConexao = "";
+    public static String urlConexao = "jdbc:mysql://localhost:3306/toys2you";
+    public static String login = "root";
+    public static String senha = "P@$$w0rd";
 
     public void adicionaUsuario(Usuario usuario){
         UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
-        usuarioDAOImpl.connect(urlConexao);
+        usuarioDAOImpl.connect(urlConexao, login, senha);
 
-        usuarioDAOImpl.insert(urlConexao, usuario);
+        usuarioDAOImpl.insert(urlConexao, login, senha, usuario);
     }
 
-    public void alteraUsuario(String login, String senha, int id){
+    public void alteraUsuario(String email, String password, int id){
         UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
-        usuarioDAOImpl.connect(urlConexao);
+        usuarioDAOImpl.connect(urlConexao, login, senha);
 
-        usuarioDAOImpl.update(urlConexao, login, senha, id);
+        usuarioDAOImpl.update(urlConexao, login, senha, id, email, password);
     }
 
-    public List<String> buscaLogin(String login, String senha) {
+    public List<String> buscaLogin(String email, String password) {
         UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
-        usuarioDAOImpl.connect(urlConexao);
+        usuarioDAOImpl.connect(urlConexao, login, senha);
 
-        List<String> r = usuarioDAOImpl.getLogin(urlConexao, login, senha);
+        List<String> r = usuarioDAOImpl.getLogin(urlConexao, login, senha, email, password);
         return r;
 
     }
 
     public void adicionaCliente(Cliente cliente){
         ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
-        clienteDAOImpl.connect(urlConexao);
+        clienteDAOImpl.connect(urlConexao, login, senha);
 
-        clienteDAOImpl.insert(urlConexao, cliente);
+        clienteDAOImpl.insert(urlConexao, login, senha, cliente);
     }
 
     public void alteraCliente(int id, String nome, String cpf , int nrEndereco, String bairro, String cidade, int estado, int cep , int sexo, Date nascimento, int estCivil, String email, int telefone){
         ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
-        clienteDAOImpl.connect(urlConexao);
+        clienteDAOImpl.connect(urlConexao, login, senha);
 
-        clienteDAOImpl.update(urlConexao, id, nome, cpf, nrEndereco, bairro, cidade, estado, cep, sexo, nascimento, estCivil, email, telefone);
+        clienteDAOImpl.update(urlConexao, login, senha, id, nome, cpf, nrEndereco, bairro, cidade, estado, cep, sexo, nascimento, estCivil, email, telefone);
     }
 
     public void deletaCliente(int id){
         ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
-        clienteDAOImpl.connect(urlConexao);
+        clienteDAOImpl.connect(urlConexao, login, senha);
 
-        clienteDAOImpl.delete(urlConexao, id);
+        clienteDAOImpl.delete(urlConexao, login, senha, id);
     }
 
     public List<String> consultaCliente(String nome, String cpf){
         ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
-        clienteDAOImpl.connect(urlConexao);
+        clienteDAOImpl.connect(urlConexao, login, senha);
 
         if(nome!=null){
-            List<String> r = clienteDAOImpl.getNome(urlConexao, nome);
+            List<String> r = clienteDAOImpl.getNome(urlConexao, login, senha, nome);
             return r;
         }
-        List<String> r = clienteDAOImpl.getCpf(urlConexao, cpf);
+        List<String> r = clienteDAOImpl.getCpf(urlConexao, login, senha, cpf);
         return r;
     }
 
     public void adicionaProduto(Produto produto, int tipo){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
-        produtoDAOImpl.connect(urlConexao);
+        produtoDAOImpl.connect(urlConexao, login, senha);
 
-        produtoDAOImpl.insert(urlConexao, produto, tipo);
+        produtoDAOImpl.insert(urlConexao, login, senha, produto, tipo);
     }
 
     public void alteraProduto(int id, String nome, String descricao, double valor, Tipo tipo ){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
-        produtoDAOImpl.connect(urlConexao);
+        produtoDAOImpl.connect(urlConexao, login, senha);
 
-        produtoDAOImpl.update(urlConexao, id, nome, descricao, valor, tipo);
+        produtoDAOImpl.update(urlConexao, login, senha, id, nome, descricao, valor, tipo);
     }
 
     public void deletaProduto(int id){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
-        produtoDAOImpl.connect(urlConexao);
+        produtoDAOImpl.connect(urlConexao, login, senha);
 
-        produtoDAOImpl.delete(urlConexao, id);
+        produtoDAOImpl.delete(urlConexao, login, senha, id);
     }
 
     public List<String> ConsultaProduto(String nomeProduto, int id){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
-        produtoDAOImpl.connect(urlConexao);
+        produtoDAOImpl.connect(urlConexao, login, senha);
 
         if(nomeProduto!=null){
-            List<String> r = produtoDAOImpl.getNome(urlConexao, nomeProduto);
+            List<String> r = produtoDAOImpl.getNome(urlConexao, login, senha, nomeProduto);
             return r;
         }
 
-        List<String> r = produtoDAOImpl.getId(urlConexao, id);
+        List<String> r = produtoDAOImpl.getId(urlConexao, login, senha, id);
         return r;
     }
     
     public void adicionaEstoque(Estoque estoque){
         EstoqueDAOImpl estoqueDAOImpl = new EstoqueDAOImpl();
-        estoqueDAOImpl.connect(urlConexao);
+        estoqueDAOImpl.connect(urlConexao, login, senha);
 
-        estoqueDAOImpl.insert(urlConexao, estoque);
+        estoqueDAOImpl.insert(urlConexao, login, senha, estoque);
     }
 
     public void alteraEstoque(int id, Produto produto,int qt_prod){
         EstoqueDAOImpl estoqueDAOImpl = new EstoqueDAOImpl();
-        estoqueDAOImpl.connect(urlConexao);
+        estoqueDAOImpl.connect(urlConexao, login, senha);
 
-        estoqueDAOImpl.update(urlConexao, id, produto, qt_prod);
+        estoqueDAOImpl.update(urlConexao, login, senha, id, produto, qt_prod);
     }
 
     public void deletaEstoque(int id){
         EstoqueDAOImpl estoqueDAOImpl = new EstoqueDAOImpl();
-        estoqueDAOImpl.connect(urlConexao);
+        estoqueDAOImpl.connect(urlConexao, login, senha);
 
-        estoqueDAOImpl.delete(urlConexao, id);
+        estoqueDAOImpl.delete(urlConexao, login, senha, id);
     }
 
     public List<String> ConsultaProdutoEstoque(String nomeProduto, int id){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
-        produtoDAOImpl.connect(urlConexao);
+        produtoDAOImpl.connect(urlConexao, login, senha);
 
         if(nomeProduto!=null){
-            List<String> r = produtoDAOImpl.getNome(urlConexao, nomeProduto);
+            List<String> r = produtoDAOImpl.getNome(urlConexao, login, senha, nomeProduto);
             return r;
         }
 
-        List<String> r = produtoDAOImpl.getId(urlConexao, id);
+        List<String> r = produtoDAOImpl.getId(urlConexao, login, senha, id);
         return r;
     }
 
     
      public void adicionaTipo(Tipo tipo){
         TipoDAOImpl tipoDAOImpl = new TipoDAOImpl();
-        tipoDAOImpl.connect(urlConexao);
+        tipoDAOImpl.connect(urlConexao, login, senha);
 
-        tipoDAOImpl.insert(urlConexao, tipo);
+        tipoDAOImpl.insert(urlConexao, login, senha, tipo);
     }
 
     public void alteraTipo(int id, String tipo){
         TipoDAOImpl tipoDAOImpl = new TipoDAOImpl();
-        tipoDAOImpl.connect(urlConexao);
+        tipoDAOImpl.connect(urlConexao, login, senha);
 
-        tipoDAOImpl.update(urlConexao, id, tipo);
+        tipoDAOImpl.update(urlConexao, login, senha, id, tipo);
     }
 
     public void deletaTipo(int id){
         TipoDAOImpl tipoDAOImpl = new TipoDAOImpl();
-        tipoDAOImpl.connect(urlConexao);
+        tipoDAOImpl.connect(urlConexao, login, senha);
         
-        tipoDAOImpl.delete(urlConexao, id);
+        tipoDAOImpl.delete(urlConexao, login, senha, id);
     }
 
     public List<String> ConsultaTipo(String nomeTipo, int id){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
-        produtoDAOImpl.connect(urlConexao);
+        produtoDAOImpl.connect(urlConexao, login, senha);
 
         if(nomeTipo!=null){
-            List<String> r = produtoDAOImpl.getNome(urlConexao, nomeTipo);
+            List<String> r = produtoDAOImpl.getNome(urlConexao, login, senha, nomeTipo);
             return r;
         }
 
-        List<String> r = produtoDAOImpl.getId(urlConexao, id);
+        List<String> r = produtoDAOImpl.getId(urlConexao, login, senha, id);
         return r;
     }
     public String getUrl(){
@@ -320,52 +322,52 @@ public class Toys2YouController {
         
     public void logErro(String erro){
         LogDAOImpl logDAO = new LogDAOImpl();
-        logDAO.connect(urlConexao);
+        logDAO.connect(urlConexao, login, senha);
 
-        logDAO.insert(urlConexao, erro);
+        logDAO.insert(urlConexao, login, senha, erro);
     }
         
     public void adicionaMovimento(Movimento movimento){
         MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
-        movimentoDAOImpl.connect(urlConexao);
+        movimentoDAOImpl.connect(urlConexao, login, senha);
 
-        movimentoDAOImpl.insert(urlConexao, movimento);
+        movimentoDAOImpl.insert(urlConexao, login, senha, movimento);
     }
     public void adicionaVenda(Venda venda){
         MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
-        movimentoDAOImpl.connect(urlConexao);
+        movimentoDAOImpl.connect(urlConexao, login, senha);
 
-        movimentoDAOImpl.insertVenda(urlConexao, venda);
+        movimentoDAOImpl.insertVenda(urlConexao, login, senha, venda);
     }
 
     public void deletaMovimento(int id){
         MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
-        movimentoDAOImpl.connect(urlConexao);
+        movimentoDAOImpl.connect(urlConexao, login, senha);
         
-        movimentoDAOImpl.delete(urlConexao, id);
+        movimentoDAOImpl.delete(urlConexao, login, senha, id);
     }
     
     public void deletaVenda(int id){
         MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
-        movimentoDAOImpl.connect(urlConexao);
+        movimentoDAOImpl.connect(urlConexao, login, senha);
         
-        movimentoDAOImpl.deleteVenda(urlConexao, id);
+        movimentoDAOImpl.deleteVenda(urlConexao, login, senha, id);
     }
 
     public List<String> consultaMovimento(int venda){
         MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
-        movimentoDAOImpl.connect(urlConexao);
+        movimentoDAOImpl.connect(urlConexao, login, senha);
 
-        List<String> r = movimentoDAOImpl.getMovimentoVenda(urlConexao, venda);
+        List<String> r = movimentoDAOImpl.getMovimentoVenda(urlConexao, login, senha, venda);
        
         return r;
     }
     
     public List<String> consultaVenda(int venda){
         MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
-        movimentoDAOImpl.connect(urlConexao);
+        movimentoDAOImpl.connect(urlConexao, login, senha);
 
-        List<String> r = movimentoDAOImpl.getVenda(urlConexao, venda);
+        List<String> r = movimentoDAOImpl.getVenda(urlConexao, login, senha, venda);
        
         return r;
     }
