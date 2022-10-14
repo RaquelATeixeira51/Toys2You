@@ -27,15 +27,14 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public void insert(String urlConexao, String login, String senha, Usuario usuario) {
-        String sql = "INSERT INTO usuario(id, login, senha) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO tb_usuario(DS_LOGIN, DS_SENHA) VALUES(?, ?)";
         
         try{
             Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
-            preparedStatement.setInt(1, usuario.getId());
-            preparedStatement.setString(2, usuario.getEmail());
-            preparedStatement.setString(3, usuario.getPassword());
+            preparedStatement.setString(1, usuario.getEmail());
+            preparedStatement.setString(2, usuario.getPassword());
 
             preparedStatement.executeUpdate();
         } catch(SQLException e){
