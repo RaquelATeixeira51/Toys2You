@@ -26,7 +26,7 @@ public class ProdutoDAOImpl implements ProdutoDAO{
         }
     }
     public void insert(String urlConexao, String login, String senha, Produto produto, int tipo) {
-        String sql = "INSERT INTO produto(DS_PRODUTO , VL_TOTAL, DS_DESCRICAO, TG_TIPO ) VALUES( ?, ?, ?, ?)";
+        String sql = "INSERT INTO tb_produto(DS_PRODUTO , VL_TOTAL, DS_DESCRICAO, TG_TIPO ) VALUES( ?, ?, ?, ?)";
         
         
         try{

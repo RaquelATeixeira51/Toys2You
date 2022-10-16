@@ -29,7 +29,7 @@ public class EstoqueDAOImpl implements EstoqueDAO{
 
     @Override
     public void insert(String urlConexao, String login, String senha, Estoque estoque) {
-        String sql = "INSERT INTO estoque( fk_produto, qt_Produto) VALUES( ?, ?)";
+        String sql = "INSERT INTO tb_estoque( fk_produto, qt_Produto) VALUES( ?, ?)";
         
         try{
             Connection conexao = connect(urlConexao, login, senha);
@@ -81,7 +81,7 @@ public class EstoqueDAOImpl implements EstoqueDAO{
 
     @Override
     public List<String> getNomeProduto(String urlConexao, String login, String senha, String nomeProduto) {
-        String sql = "SELECT * FROM usuario WHERE id =" + nomeProduto;
+        String sql = "SELECT * FROM tb_produto WHERE DS_PRODUTO =" + nomeProduto;
         List<String> l = new ArrayList<String>();
         try{
             Connection conexao = connect(urlConexao, login, senha);

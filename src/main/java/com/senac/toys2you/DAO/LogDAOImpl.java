@@ -21,7 +21,7 @@ public class LogDAOImpl implements LogDAO {
     
     @Override
     public void insert(String urlConexao, String login, String senha, String log) {
-        String sql = "INSERT INTO estoque( DS_ERRO) VALUES(" + log + ")";
+        String sql = "INSERT INTO tb_estoque( DS_ERRO) VALUES(" + log + ")";
         
         try{
             Connection conexao = connect(urlConexao, login, senha);
