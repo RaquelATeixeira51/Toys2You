@@ -81,11 +81,7 @@ public class Toys2YouController {
         ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
         clienteDAOImpl.connect(urlConexao, login, senha);
 
-        if(nome!=null){
-            List<String> r = clienteDAOImpl.getNome(urlConexao, login, senha, nome);
-            return r;
-        }
-        List<String> r = clienteDAOImpl.getCpf(urlConexao, login, senha, cpf);
+        List<String> r = clienteDAOImpl.getClientes(urlConexao, login, senha, nome, cpf);
         return r;
     }
 

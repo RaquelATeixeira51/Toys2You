@@ -86,8 +86,11 @@ public class ProdutoDAOImpl implements ProdutoDAO{
 
     @Override
     public List<String> getNome(String urlConexao, String login, String senha, String nomeProduto) {
-        String sql = "SELECT * FROM TB_PRODUTO WHERE DS_PRODUTO=" + nomeProduto;
+        String sql = "SELECT * FROM TB_PRODUTO";
         List<String> l = new ArrayList<String>();
+        if(nomeProduto != null){
+            sql = "SELECT * FROM TB_PRODUTO WHERE DS_PRODUTO=" + nomeProduto;
+        }
 
         try{
             Connection conexao = connect(urlConexao, login, senha);
@@ -105,8 +108,11 @@ public class ProdutoDAOImpl implements ProdutoDAO{
 
     @Override
     public List<String> getId(String urlConexao, String login, String senha, int id) {
-        String sql = "SELECT * FROM TB_PRODUTO WHERE PK_ID=" + id;
+        String sql = "SELECT * FROM TB_PRODUTO";
         List<String> l = new ArrayList<String>();
+        if(id != 0){
+            sql = "SELECT * FROM TB_PRODUTO WHERE PK_ID=" + id;
+        }
 
         try{
             Connection conexao = connect(urlConexao, login, senha);

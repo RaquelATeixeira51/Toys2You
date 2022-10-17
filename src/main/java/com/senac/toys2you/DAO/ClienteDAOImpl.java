@@ -102,9 +102,17 @@ public class ClienteDAOImpl implements ClienteDAO{
     }
 
     @Override
-    public List<String> getNome(String urlConexao, String login, String senha, String nome) {
-        String sql = "SELECT * FROM TB_CLIENTE WHERE DS_NOME=" + nome;
+    public List<String> getClientes(String urlConexao, String login, String senha, String nome, String cpf){
         List<String> l = new ArrayList<String>();
+        String sql = "SELECT * FROM TB_CLIENTE";
+        
+        if(nome != null && cpf == null || cpf.isEmpty()){
+            sql = "SELECT * FROM TB_CLIENTE WHERE DS_NOME=" + nome;
+        }else if(cpf != null && nome == null || nome.isEmpty()){
+            sql = "SELECT * FROM TB_CLIENTE WHERE NR_CPF=" + cpf;
+        }else{
+            sql = "SELECT * FROM TB_CLIENTE WHERE NR_CPF=" + cpf + " AND DS_NOME=" + nome;
+        }
 
         try{
             Connection conexao = connect(urlConexao, login, senha);
@@ -113,25 +121,6 @@ public class ClienteDAOImpl implements ClienteDAO{
 
             while(resultado.next()){
                 l.add(resultado.getString("DS_NOME"));
-            }
-        } catch(SQLException e){
-            toy.logErro(e.getMessage());
-        }
-        return l;
-    }
-
-    @Override
-    public List<String> getCpf(String urlConexao, String login, String senha, String cpf) {
-        String sql = "SELECT * FROM TB_CLIENTE WHERE NR_CPF=" + cpf;
-        List<String> l = new ArrayList<String>();
-
-        try{
-            Connection conexao = connect(urlConexao, login, senha);
-            Statement statement = conexao.createStatement();
-            ResultSet resultado = statement.executeQuery(sql);
-
-            while(resultado.next()){
-                l.add(resultado.getString("NR_CPF"));
             }
         } catch(SQLException e){
             toy.logErro(e.getMessage());
