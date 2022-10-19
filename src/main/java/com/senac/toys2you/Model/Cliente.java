@@ -20,7 +20,7 @@ public class Cliente {
     private int estado;
     private int cep;
     private int sexo;
-    private Date dataNascimento;
+    private String dataNascimento;
     private int estadoCivil;
     private String email;
     private int telefone;
@@ -28,7 +28,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int id, String nome, int cpf, int numero, String bairro, String cidade, int estado, int cep, int sexo, Date dataNascimento, int estadoCivil, String email, int telefone) {
+    public Cliente(int id, String nome, int cpf, int numero, String bairro, String cidade, int estado, int cep, int sexo, String dataNascimento, int estadoCivil, String email, int telefone) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -82,7 +82,7 @@ public class Cliente {
         this.sexo = sexo;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -136,7 +136,7 @@ public class Cliente {
         return sexo;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 

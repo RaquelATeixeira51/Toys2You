@@ -370,10 +370,16 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cli.setNome(txtDS_NOME.getText());
-        cli.setCpf((txtDS_CPF.getText()));
+        cli.setCpf((Integer.parseInt(txtDS_CPF.getText())));
         cli.setBairro(txtDS_BAIRRO.getText());
         cli.setCidade(txtDS_CIDADE.getText());
-        cli.setDataNascimento((Date)txtDT_NASCIMENTO.getText());
+        cli.setDataNascimento(txtDT_NASCIMENTO.getText());
+        
+        
+        /*
+            Parte necessária para a primeira entrega
+        */
+        new TelaClienteAlterar().show(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtDS_NOMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDS_NOMEActionPerformed

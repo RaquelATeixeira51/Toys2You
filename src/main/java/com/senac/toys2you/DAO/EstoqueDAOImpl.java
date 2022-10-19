@@ -83,7 +83,7 @@ public class EstoqueDAOImpl implements EstoqueDAO{
     public List<String> getNomeProduto(String urlConexao, String login, String senha, String nomeProduto) {
         String sql = "SELECT * FROM tb_produto";
         if(nomeProduto != null){
-            sql = "SELECT * FROM tb_produto WHERE DS_PRODUTO " + nomeProduto;
+            sql = sql + " WHERE DS_PRODUTO " + nomeProduto;
         }
         List<String> l = new ArrayList<String>();
         try{

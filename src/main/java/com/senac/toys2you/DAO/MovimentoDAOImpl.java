@@ -126,7 +126,11 @@ public class MovimentoDAOImpl implements MovimentoDAO{
     
     @Override
     public List<String> getVenda(String urlConexao, String login, String senha, int venda) {
-        String sql = "SELECT * FROM TB_VENDA WHERE FK_VENDA =" + venda;
+        String sql = "SELECT * FROM TB_VENDA";
+        
+        if (venda > 0){
+            sql = sql +  "WHERE FK_VENDA =" + venda;
+        }
         List<String> l = new ArrayList<String>();
         try{
             Connection conexao = connect(urlConexao, login, senha);

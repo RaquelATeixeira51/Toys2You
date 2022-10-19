@@ -44,7 +44,7 @@ public class ClienteDAOImpl implements ClienteDAO{
             preparedStatement.setInt(5, cliente.getEstado());
             preparedStatement.setInt(6, cliente.getCep());
             preparedStatement.setInt(7, cliente.getSexo());
-            preparedStatement.setDate(8, (Date) cliente.getDataNascimento());
+            preparedStatement.setString(8,cliente.getDataNascimento());
             preparedStatement.setInt(9, cliente.getEstadoCivil());
             preparedStatement.setString(10, cliente.getEmail());
             preparedStatement.setInt(11, cliente.getTelefone());
