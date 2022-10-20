@@ -1,7 +1,13 @@
 package com.senac.toys2you.View;
 
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
+
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    public String tela = "";
      public TelaPrincipal() {
         initComponents();
     }
@@ -17,7 +23,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jInternalFrame = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,7 +82,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addGap(69, 69, 69)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,19 +94,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
-        jInternalFrame1.setVisible(true);
-
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 586, Short.MAX_VALUE)
+        javax.swing.GroupLayout jInternalFrameLayout = new javax.swing.GroupLayout(jInternalFrame);
+        jInternalFrame.setLayout(jInternalFrameLayout);
+        jInternalFrameLayout.setHorizontalGroup(
+            jInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 611, Short.MAX_VALUE)
         );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jInternalFrameLayout.setVerticalGroup(
+            jInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -108,16 +112,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jInternalFrame1)
-                .addContainerGap())
+                .addComponent(jInternalFrame)
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jInternalFrame)
+                .addContainerGap())
         );
 
         pack();
@@ -125,53 +131,65 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         TelaClienteConsulta telaNew = new TelaClienteConsulta();        
-        jInternalFrame1.add(telaNew);
+        jInternalFrame.add(telaNew);
+        
+        try {
+            telaNew.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         telaNew.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         TelaRelatorioT telaNew = new TelaRelatorioT();
-        jInternalFrame1.add(telaNew);
+        jInternalFrame.add(telaNew);
+        
+        try {
+            telaNew.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         telaNew.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        TelaTipoConsulta telaNew = new TelaTipoConsulta();
+        TelaTipoConsulta telaNew = new TelaTipoConsulta();        
+        jInternalFrame.add(telaNew);
         
-        // Botão Tipo de Produto
+        try {
+            telaNew.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        // TelaEstoqueConsulta telaEstoque = new TelaEstoqueConsulta();
-        // TelaProdutoConsulta telaProduto = new TelaProdutoConsulta();
-        // TelaTipoConsulta telaTipo = new TelaTipoConsulta();
-        // TelaClienteConsulta telaCliente = new TelaClienteConsulta();
-        // TelaRelatorioT telaRelatorio = new TelaRelatorioT();
-
-        // telaEstoque.setVisible(false);
-        // telaProduto.setVisible(false);
-        // telaTipo.setVisible(false);
-        // telaCliente.setVisible(false);
-        // telaRelatorio.setVisible(false);
-        
-        // jInternalFrame1.remove(telaEstoque);
-        // jInternalFrame1.remove(telaProduto);
-        // jInternalFrame1.remove(telaTipo);
-        // jInternalFrame1.remove(telaCliente);
-        // jInternalFrame1.remove(telaRelatorio);
-        
-        jInternalFrame1.add(telaNew);
         telaNew.setVisible(true);
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         TelaProdutoConsulta telaNew = new TelaProdutoConsulta();
-        jInternalFrame1.add(telaNew);
+        jInternalFrame.add(telaNew);
+        
+        try {
+            telaNew.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         telaNew.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         TelaEstoqueConsulta telaNew = new TelaEstoqueConsulta();
-        jInternalFrame1.add(telaNew);
+        jInternalFrame.add(telaNew);
+        
+        try {
+            telaNew.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         telaNew.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -200,10 +218,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal().setVisible(true);
+                TelaPrincipal frame = new TelaPrincipal();
+                frame.setVisible(true);
+                frame.setExtendedState(TelaPrincipal.MAXIMIZED_BOTH);
             }
         });
     }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -212,7 +235,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JDesktopPane jInternalFrame;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
