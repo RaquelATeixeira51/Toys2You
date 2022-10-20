@@ -4,6 +4,8 @@
  */
 package com.senac.toys2you.View;
 
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  *
  * @author rsouz
@@ -14,6 +16,9 @@ public class TelaEstoqueConsulta extends javax.swing.JInternalFrame {
      * Creates new form TelaEstoqueConsulta
      */
     public TelaEstoqueConsulta() {
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
+        bi.setNorthPane(null);
         initComponents();
     }
 

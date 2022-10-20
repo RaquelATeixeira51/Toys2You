@@ -40,7 +40,7 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtPK_ID = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setText("Nome do Produto:");
 
@@ -58,6 +58,11 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("ID:");
 
@@ -144,6 +149,11 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         */
         new TelaProdutoAlterar().show(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

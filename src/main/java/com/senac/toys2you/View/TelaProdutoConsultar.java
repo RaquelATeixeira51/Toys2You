@@ -117,7 +117,7 @@ public class TelaProdutoConsultar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDS_NOMEPRODUTOActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new TelaProdutoConsultar().show(true);
+        new TelaProdutoAlterar().show(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

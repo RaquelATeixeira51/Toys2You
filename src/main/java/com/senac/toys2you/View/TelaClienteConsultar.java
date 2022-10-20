@@ -35,7 +35,7 @@ public class TelaClienteConsultar extends javax.swing.JFrame {
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         cmdINCLUIR = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Consultar");
 

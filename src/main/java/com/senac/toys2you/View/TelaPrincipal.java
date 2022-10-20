@@ -124,11 +124,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TelaClienteConsulta telaNew = new TelaClienteConsulta();
+        TelaClienteConsulta telaNew = new TelaClienteConsulta();        
         jInternalFrame1.add(telaNew);
         telaNew.setVisible(true);
-
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -139,6 +137,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         TelaTipoConsulta telaNew = new TelaTipoConsulta();
+        
+        // Botão Tipo de Produto
+        
+        // TelaEstoqueConsulta telaEstoque = new TelaEstoqueConsulta();
+        // TelaProdutoConsulta telaProduto = new TelaProdutoConsulta();
+        // TelaTipoConsulta telaTipo = new TelaTipoConsulta();
+        // TelaClienteConsulta telaCliente = new TelaClienteConsulta();
+        // TelaRelatorioT telaRelatorio = new TelaRelatorioT();
+
+        // telaEstoque.setVisible(false);
+        // telaProduto.setVisible(false);
+        // telaTipo.setVisible(false);
+        // telaCliente.setVisible(false);
+        // telaRelatorio.setVisible(false);
+        
+        // jInternalFrame1.remove(telaEstoque);
+        // jInternalFrame1.remove(telaProduto);
+        // jInternalFrame1.remove(telaTipo);
+        // jInternalFrame1.remove(telaCliente);
+        // jInternalFrame1.remove(telaRelatorio);
+        
         jInternalFrame1.add(telaNew);
         telaNew.setVisible(true);
         

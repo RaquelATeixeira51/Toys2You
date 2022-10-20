@@ -4,6 +4,8 @@
  */
 package com.senac.toys2you.View;
 
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  *
  * @author rsouz
@@ -14,6 +16,9 @@ public class TelaProdutoConsulta extends javax.swing.JInternalFrame {
      * Creates new form TelaProdutoConsulta
      */
     public TelaProdutoConsulta() {
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
+        bi.setNorthPane(null);
         initComponents();
     }
 
@@ -115,7 +120,7 @@ public class TelaProdutoConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDS_NOMEPRODUTOActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new TelaProdutoConsultar().show(true);
+        new TelaProdutoAlterar().show(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
