@@ -62,6 +62,11 @@ public class TelaRelatorioT extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel4.setText("Valor Final");
@@ -158,6 +163,15 @@ public class TelaRelatorioT extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == 10){
+            TelaRelatorioA telaNew = new TelaRelatorioA();
+            telaNew.setVisible(true);
+            telaNew.setExtendedState(TelaPrincipal.MAXIMIZED_BOTH);
+        }
+    }//GEN-LAST:event_jTable1KeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
