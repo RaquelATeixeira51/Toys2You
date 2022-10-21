@@ -5,8 +5,7 @@
 
 package com.senac.toys2you.Toys2You;
 
-import com.senac.toys2you.Controller.Toys2YouController;
-import com.senac.toys2you.Model.Usuario;
+import com.senac.toys2you.View.TelaPrincipal;
 
 /**
  *
@@ -15,11 +14,7 @@ import com.senac.toys2you.Model.Usuario;
 public class Toys2You {
 
     public static void main(String[] args) {
-        Toys2YouController toys2YouController = new Toys2YouController();
-        Usuario usuario = new Usuario();
-        usuario.setId(1);
-        usuario.setEmail("raquelat");
-        usuario.setPassword("oioi");
-        toys2YouController.adicionaUsuario(usuario);
+       TelaPrincipal tp = new TelaPrincipal();
+       tp.setVisible(true);
     }
 }
