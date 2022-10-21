@@ -4,6 +4,8 @@
  */
 package com.senac.toys2you.View;
 
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  *
  * @author rsouz
@@ -14,6 +16,9 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
      * Creates new form TelaFrenteCaixaPDV
      */
     public TelaFrenteCaixaPDV() {
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
+        bi.setNorthPane(null);
         initComponents();
     }
 
@@ -66,6 +71,7 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Valor Unitario:");
 
+        imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone.png"))); // NOI18N
         imagem.setText("toy");
 
         txtDS_QUANTIDADE.addActionListener(new java.awt.event.ActionListener() {
@@ -89,14 +95,14 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(imagem, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtDS_VALORTOTAL, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtDS_VALORUNITARIO, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtDS_QUANTIDADE, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtDS_CODIGO, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(imagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -116,7 +122,7 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(imagem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDS_CODIGO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
