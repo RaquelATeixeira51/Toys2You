@@ -199,7 +199,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        TelaFrenteCaixaPDV telaNew = new TelaFrenteCaixaPDV();
+        jInternalFrame.add(telaNew);
+        
+        try {
+            telaNew.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        telaNew.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     public static void main(String args[]) {

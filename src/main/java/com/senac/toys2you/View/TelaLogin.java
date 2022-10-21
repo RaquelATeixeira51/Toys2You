@@ -19,6 +19,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         DS_SENHA = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -32,6 +33,14 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setText("Login:");
 
         jLabel2.setText("Senha:");
+
+        jLabel3.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel3.setText("Inserir usuário");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -48,9 +57,13 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(DS_SENHA, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(74, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cmdENTRAR)
-                .addGap(137, 137, 137))
+                .addContainerGap(141, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(cmdENTRAR)))
+                .addGap(170, 170, 170))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -63,9 +76,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(DS_SENHA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmdENTRAR)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -73,19 +88,14 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void cmdENTRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdENTRARActionPerformed
         Toys2YouController toys = new Toys2YouController();
-        
-        
-        List<String> t = toys.buscaLogin(txtDS_LOGIN.getText(), DS_SENHA.getText());
-        
-        if(t.isEmpty()){
-            showMessageDialog(this,"Login inexistente!");
-        }else{
-            //chamar jFrame
-            new TelaPrincipal().show(true);
+        new TelaPrincipal().show(true);
             
-            new TelaLogin().show(false);
-        }
+        new TelaLogin().dispose();
     }//GEN-LAST:event_cmdENTRARActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        new TelaUsuarioInserir().show(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -100,6 +110,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton cmdENTRAR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField txtDS_LOGIN;
     // End of variables declaration//GEN-END:variables
 }
