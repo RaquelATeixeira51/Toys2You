@@ -1,34 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.senac.toys2you.Model;
 
 import java.util.Date;
 
-/**
- *
- * @author raquel.ateixeira3
- */
 public class Cliente {
     private int id;
     private String nome;
-    private int cpf;
+    private String cpf;
     private int numero;
     private String bairro;
     private String cidade;
-    private int estado;
-    private int cep;
+    private String estado;
+    private String cep;
     private int sexo;
     private String dataNascimento;
     private int estadoCivil;
     private String email;
-    private int telefone;
+    private String telefone;
 
     public Cliente() {
     }
 
-    public Cliente(int id, String nome, int cpf, int numero, String bairro, String cidade, int estado, int cep, int sexo, String dataNascimento, int estadoCivil, String email, int telefone) {
+    public Cliente(int id, String nome, String cpf, int numero, String bairro, String cidade, String estado, String cep, int sexo, String dataNascimento, int estadoCivil, String email, String telefone) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -54,7 +46,7 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -70,11 +62,11 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
@@ -94,7 +86,7 @@ public class Cliente {
         this.email = email;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
     
@@ -108,7 +100,7 @@ public class Cliente {
         return nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
@@ -124,11 +116,11 @@ public class Cliente {
         return cidade;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
@@ -148,7 +140,7 @@ public class Cliente {
         return email;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
     

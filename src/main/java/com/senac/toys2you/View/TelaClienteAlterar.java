@@ -53,7 +53,7 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
         txtDS_BAIRRO = new javax.swing.JTextField();
         txtDS_CIDADE = new javax.swing.JTextField();
         txtDS_ESTADO = new javax.swing.JTextField();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
+        txtCEP = new javax.swing.JFormattedTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -65,14 +65,15 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         txtDS_CPF = new javax.swing.JFormattedTextField();
         txtDT_NASCIMENTO = new javax.swing.JFormattedTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        cboSEXO = new javax.swing.JComboBox<>();
+        cboESTADOCIVIL = new javax.swing.JComboBox<>();
+        txtTELEFONE = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -123,7 +124,7 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
         });
 
         try {
-            jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            txtCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -174,7 +175,7 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
                     .addComponent(txtDS_BAIRRO)
                     .addComponent(txtDS_ESTADO, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                     .addComponent(txtDS_CIDADE)
-                    .addComponent(jFormattedTextField4))
+                    .addComponent(txtCEP))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -184,7 +185,7 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -247,12 +248,12 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino" }));
+        cboSEXO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Casado", "Solteiro" }));
+        cboESTADOCIVIL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Casado", "Solteiro" }));
 
         try {
-            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+            txtTELEFONE.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -271,6 +272,9 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
 
         jLabel18.setForeground(new java.awt.Color(255, 0, 0));
         jLabel18.setText("*");
+
+        jLabel25.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel25.setText("*");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -294,15 +298,16 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
                             .addComponent(jLabel16)
                             .addComponent(jLabel17)
                             .addComponent(jLabel18)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTELEFONE, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDS_NOME, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDS_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboSEXO, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDT_NASCIMENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboESTADOCIVIL, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDS_EMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(222, 222, 222)
@@ -333,7 +338,7 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboSEXO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,21 +349,20 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
                         .addComponent(txtDT_NASCIMENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboESTADOCIVIL, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
                             .addComponent(jLabel18))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel12)
+                                .addComponent(jLabel25))
                             .addComponent(txtDS_EMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel13))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTELEFONE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
@@ -369,16 +373,61 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cli.setNome(txtDS_NOME.getText());
-        cli.setCpf((Integer.parseInt(txtDS_CPF.getText())));
-        cli.setBairro(txtDS_BAIRRO.getText());
-        cli.setCidade(txtDS_CIDADE.getText());
-        cli.setDataNascimento(txtDT_NASCIMENTO.getText());
+        String nome = txtDS_NOME.getText();
+        String cpf = txtDS_CPF.getText();
+        String bairro = txtDS_BAIRRO.getText();
+        String cidade = txtDS_CIDADE.getText();
+        String nascimento = txtDT_NASCIMENTO.getText();
+        String email = txtDS_EMAIL.getText();
+        String end = txtDS_ENDERECO.getText();
+        String est = txtDS_ESTADO.getText();
+        Integer numEnd = Integer.valueOf(txtNR_NUMEROEND.getText());
+        Integer sexo = cboSEXO.getItemCount();
+        Integer estadoCivil = cboESTADOCIVIL.getItemCount();
+        String cep = txtCEP.getText();
+        String tel = txtTELEFONE.getText();
+        
+        if(nome == null || nome.isBlank())
+            return;
+        if(cpf == null || cpf.isBlank())
+            return;
+        if(cep == null || cep.isBlank())
+            return;
+        if(bairro == null || bairro.isBlank())
+            return;
+        if(cidade == null || cidade.isBlank())
+            return;
+        if(nascimento == null || nascimento.isBlank())
+            return;
+        if(email == null || email.isBlank())
+            return;
+        if(end == null || end.isBlank())
+            return;
+        if(est == null || est.isBlank())
+            return;
+        if(numEnd.toString().isBlank())
+            return;
+        if(sexo.toString().isBlank())
+            return;
+        if(estadoCivil.toString().isBlank())
+            return;
+        
+        cli.setBairro(bairro);
+        cli.setCep(cep);
+        cli.setCidade(cidade);
+        cli.setCpf(cpf);
+        cli.setDataNascimento(nascimento);
+        cli.setEmail(email);
+        cli.setEstado(est);
+        cli.setEstadoCivil(estadoCivil);
+        cli.setNome(nome);
+        cli.setNumero(numEnd);
+        cli.setSexo(sexo);
+        cli.setTelefone(tel);
+        
+        toy.adicionaCliente(cli);
         
         
-        /*
-            Parte necessária para a primeira entrega
-        */
         new TelaClienteAlterar().show(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -445,11 +494,9 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cboESTADOCIVIL;
+    private javax.swing.JComboBox<String> cboSEXO;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -467,6 +514,7 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -475,6 +523,7 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JFormattedTextField txtCEP;
     private javax.swing.JTextField txtDS_BAIRRO;
     private javax.swing.JTextField txtDS_CIDADE;
     private javax.swing.JFormattedTextField txtDS_CPF;
@@ -484,5 +533,6 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
     private javax.swing.JTextField txtDS_NOME;
     private javax.swing.JFormattedTextField txtDT_NASCIMENTO;
     private javax.swing.JTextField txtNR_NUMEROEND;
+    private javax.swing.JFormattedTextField txtTELEFONE;
     // End of variables declaration//GEN-END:variables
 }
