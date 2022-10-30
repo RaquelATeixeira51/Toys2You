@@ -38,16 +38,16 @@ public class ClienteDAOImpl implements ClienteDAO{
 
             // preparedStatement.setInt(1, estoque.getId());
             preparedStatement.setString(1, cliente.getNome());
-            preparedStatement.setDouble(2, cliente.getCpf());
+            preparedStatement.setString(2, cliente.getCpf());
             preparedStatement.setInt(3, cliente.getNumero());
             preparedStatement.setString(4, cliente.getCidade());
-            preparedStatement.setInt(5, cliente.getEstado());
-            preparedStatement.setInt(6, cliente.getCep());
+            preparedStatement.setString(5, cliente.getEstado());
+            preparedStatement.setString(6, cliente.getCep());
             preparedStatement.setInt(7, cliente.getSexo());
             preparedStatement.setString(8,cliente.getDataNascimento());
             preparedStatement.setInt(9, cliente.getEstadoCivil());
             preparedStatement.setString(10, cliente.getEmail());
-            preparedStatement.setInt(11, cliente.getTelefone());
+            preparedStatement.setString(11, cliente.getTelefone());
             
             preparedStatement.executeUpdate();
         } catch(SQLException e){
