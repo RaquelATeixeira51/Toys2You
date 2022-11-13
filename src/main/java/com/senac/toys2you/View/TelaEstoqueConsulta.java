@@ -116,7 +116,17 @@ public class TelaEstoqueConsulta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new TelaEstoqueAlterar().show();
+        /*int linhaSelecionada = jTable2.getSelectedRow();
+        if(linhaSelecionada>=0){
+            Estoque obj = new Estoque();
+            obj.setId(Integer.parseInt(jTable2.getValueAt(linhaSelecionada, 0).toString()));
+            
+            TelaEstoqueAlterar novaTela = new TelaEstoqueAlterar(obj);
+            novaTela.setVisible(true);
+        }*/
+        TelaEstoqueAlterar novaTela = new TelaEstoqueAlterar();
+        novaTela.setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

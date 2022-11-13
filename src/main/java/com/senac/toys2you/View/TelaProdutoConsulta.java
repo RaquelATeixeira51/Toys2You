@@ -127,6 +127,14 @@ public class TelaProdutoConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDS_NOMEPRODUTOActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        /*int linhaSelecionada = jTable1.getSelectedRow();
+        if(linhaSelecionada>=0){
+            Produto obj = new Produto();
+            obj.setId(Integer.parseInt(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            
+            TelaProdutoAlterar novaTela = new TelaProdutoAlterar(obj);
+            novaTela.setVisible(true);
+        }*/
         new TelaProdutoAlterar().show(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

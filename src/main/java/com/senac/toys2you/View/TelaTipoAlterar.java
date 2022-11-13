@@ -4,6 +4,8 @@
  */
 package com.senac.toys2you.View;
 
+import com.senac.toys2you.Model.Tipo;
+
 /**
  *
  * @author luzin
@@ -15,6 +17,10 @@ public class TelaTipoAlterar extends javax.swing.JFrame {
      */
     public TelaTipoAlterar() {
         initComponents();
+    }
+
+    TelaTipoAlterar(Tipo obj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**

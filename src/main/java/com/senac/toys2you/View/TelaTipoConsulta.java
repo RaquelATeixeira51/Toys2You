@@ -117,6 +117,14 @@ public class TelaTipoConsulta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        /*int linhaSelecionada = jTable1.getSelectedRow();
+        if(linhaSelecionada>=0){
+            Tipo obj = new Tipo();
+            obj.setId(Integer.parseInt(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            
+            TelaTipoAlterar novaTela = new TelaTipoAlterar(obj);
+            novaTela.setVisible(true);
+        }*/
         new TelaTipoAlterar().show(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

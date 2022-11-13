@@ -6,7 +6,6 @@ package com.senac.toys2you.View;
 
 import com.senac.toys2you.Controller.Toys2YouController;
 import com.senac.toys2you.Model.Cliente;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -138,7 +137,19 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDS_NOMEActionPerformed
 
     private void cmdINCLUIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdINCLUIRActionPerformed
-        new TelaClienteAlterar().show(true);
+       /*
+        int linhaSelecionada = jTable1.getSelectedRow();
+        if(linhaSelecionada>=0){
+            Cliente obj = new Cliente();
+            obj.setId(Integer.parseInt(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            
+            TelaClienteAlterar novaTela = new TelaClienteAlterar(obj);
+            novaTela.setVisible(true);
+        }
+        */
+       TelaClienteAlterar novaTela = new TelaClienteAlterar();
+       novaTela.setVisible(true);
+        
     }//GEN-LAST:event_cmdINCLUIRActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -4,6 +4,8 @@
  */
 package com.senac.toys2you.View;
 
+import com.senac.toys2you.Model.Estoque;
+
 /**
  *
  * @author luzin
@@ -15,6 +17,10 @@ public class TelaEstoqueAlterar extends javax.swing.JFrame {
      */
     public TelaEstoqueAlterar() {
         initComponents();
+    }
+
+    TelaEstoqueAlterar(Estoque obj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
