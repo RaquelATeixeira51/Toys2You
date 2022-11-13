@@ -85,9 +85,9 @@ public class ProdutoDAOImpl implements ProdutoDAO{
     }
 
     @Override
-    public List<String> getNome(String urlConexao, String login, String senha, String nomeProduto) {
+    public List<Produto> getNome(String urlConexao, String login, String senha, String nomeProduto) {
         String sql = "SELECT * FROM TB_PRODUTO";
-        List<String> l = new ArrayList<String>();
+        List<Produto> l = new ArrayList<Produto>();
         if(nomeProduto != null){
             sql = "SELECT * FROM TB_PRODUTO WHERE DS_PRODUTO=" + nomeProduto;
         }
@@ -98,8 +98,10 @@ public class ProdutoDAOImpl implements ProdutoDAO{
             ResultSet resultado = statement.executeQuery(sql);
 
             while(resultado.next()){
-                l.add(resultado.getString("DS_PRODUTO"));
-            }
+                    Produto novoObjeto = new Produto();
+                    novoObjeto.setNome(resultado.getString("DS_NOME"));
+                    novoObjeto.setId(resultado.getInt("PK_ID"));
+                    l.add(novoObjeto);            }
         } catch(SQLException e){
             System.out.println(e.getMessage());
         }
@@ -107,9 +109,9 @@ public class ProdutoDAOImpl implements ProdutoDAO{
     }
 
     @Override
-    public List<String> getId(String urlConexao, String login, String senha, int id) {
+    public List<Produto> getId(String urlConexao, String login, String senha, int id) {
         String sql = "SELECT * FROM TB_PRODUTO";
-        List<String> l = new ArrayList<String>();
+        List<Produto> l = new ArrayList<Produto>();
         if(id != 0){
             sql = "SELECT * FROM TB_PRODUTO WHERE PK_ID=" + id;
         }
@@ -120,7 +122,10 @@ public class ProdutoDAOImpl implements ProdutoDAO{
             ResultSet resultado = statement.executeQuery(sql);
 
             while(resultado.next()){
-                l.add(resultado.getString("PK_ID"));
+                 Produto novoObjeto = new Produto();
+                    novoObjeto.setNome(resultado.getString("DS_NOME"));
+                    novoObjeto.setId(resultado.getInt("PK_ID"));
+                l.add(novoObjeto);
             }
         } catch(SQLException e){
             System.out.println(e.getMessage());

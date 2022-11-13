@@ -10,5 +10,5 @@ public interface ClienteDAO {
     public void insert(String urlConexao, String login, String senha, Cliente cliente);
     public void update(String urlConexao, String login, String senha, int id, String nome, String cpf , int nrEndereco, String bairro, String cidade, int estado, int cep , int sexo, Date nascimento, int estCivil, String email, int telefone);
     public void delete(String urlConexao, String login, String senha, int id);
-    public List<String> getClientes(String urlConexao, String login, String senha, String nome, String cpf);
+    public List<Cliente> getClientes(String urlConexao, String login, String senha, String nome, String cpf);
 }

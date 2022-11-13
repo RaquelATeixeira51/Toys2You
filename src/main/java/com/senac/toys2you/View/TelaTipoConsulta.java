@@ -4,6 +4,10 @@
  */
 package com.senac.toys2you.View;
 
+import com.senac.toys2you.Controller.Toys2YouController;
+import com.senac.toys2you.Model.Tipo;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -12,6 +16,8 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class TelaTipoConsulta extends javax.swing.JInternalFrame {
 
+    Tipo cli = new Tipo();
+    Toys2YouController toy = new Toys2YouController();
     /**
      * Creates new form TelaTipoConsulta
      */
@@ -52,6 +58,11 @@ public class TelaTipoConsulta extends javax.swing.JInternalFrame {
         jLabel2.setText("Tipo do produto:");
 
         jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,6 +119,33 @@ public class TelaTipoConsulta extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new TelaTipoAlterar().show(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String txt = txtDS_TIPO.getText();
+        int txt2 = Integer.valueOf(txtPK_ID.getText());
+        
+        if(txt.length() == 0){
+            List<Tipo> lista =  toy.ConsultaTipo(txt, txt2);
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+            modelo.setRowCount(0);
+             for (Tipo item : lista) {
+                 modelo.addRow(new String[]{item.getTipo(),
+                                             String.valueOf(item.getId()),
+                                         });
+             }
+        }else{
+            List<Tipo> lista = toy.ConsultaTipo(txt,txt2);
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+            modelo.setRowCount(0);
+             for (Tipo item : lista) {
+                modelo.addRow(new String[]{item.getTipo(),
+                                           String.valueOf(item.getId()),
+                                         });
+             }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

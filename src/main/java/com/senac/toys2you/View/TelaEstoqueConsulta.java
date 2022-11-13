@@ -4,7 +4,12 @@
  */
 package com.senac.toys2you.View;
 
+import com.senac.toys2you.Controller.Toys2YouController;
+import com.senac.toys2you.Model.Estoque;
+import com.senac.toys2you.Model.Produto;
+import java.util.List;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,6 +17,8 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class TelaEstoqueConsulta extends javax.swing.JInternalFrame {
 
+    Estoque cli = new Estoque();
+    Toys2YouController toy = new Toys2YouController();
     /**
      * Creates new form TelaEstoqueConsulta
      */
@@ -113,7 +120,31 @@ public class TelaEstoqueConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String txt = txtFK_TIPOPRODUTO.getText();
+        int txt2 = Integer.valueOf(txtDS_NOMEPRODUTO.getText());
+        
+        if(txt.length() == 0){
+            List<Produto> lista =  toy.ConsultaProdutoEstoque(txt, txt2);
+            DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+
+            modelo.setRowCount(0);
+             for (Produto item : lista) {
+                 modelo.addRow(new String[]{item.getNome(),
+                                             String.valueOf(item.getId()),
+                                         });
+             }
+        }else{
+            List<Produto> lista = toy.ConsultaProdutoEstoque(txt,txt2);
+            DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+
+            modelo.setRowCount(0);
+             for (Produto item : lista) {
+                modelo.addRow(new String[]{item.getNome(),
+                                           String.valueOf(item.getId()),
+                                         });
+             }
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -102,8 +102,8 @@ public class ClienteDAOImpl implements ClienteDAO{
     }
 
     @Override
-    public List<String> getClientes(String urlConexao, String login, String senha, String nome, String cpf){
-        List<String> l = new ArrayList<String>();
+    public List<Cliente> getClientes(String urlConexao, String login, String senha, String nome, String cpf){
+        List<Cliente> l = new ArrayList<Cliente>();
         String sql = "SELECT * FROM TB_CLIENTE";
         
         if(nome != null && cpf == null || cpf.isEmpty()){
@@ -120,7 +120,10 @@ public class ClienteDAOImpl implements ClienteDAO{
             ResultSet resultado = statement.executeQuery(sql);
 
             while(resultado.next()){
-                l.add(resultado.getString("DS_NOME"));
+                Cliente novoObjeto = new Cliente();
+                    novoObjeto.setNome(resultado.getString("DS_NOME"));
+                    novoObjeto.setCpf(resultado.getString("DS_CPF"));
+                l.add(novoObjeto);
             }
         } catch(SQLException e){
             toy.logErro(e.getMessage());

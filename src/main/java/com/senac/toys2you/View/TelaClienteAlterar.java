@@ -7,9 +7,6 @@ package com.senac.toys2you.View;
 import com.senac.toys2you.Controller.Toys2YouController;
 import javax.swing.JOptionPane;
 import com.senac.toys2you.Model.Cliente;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.*;
 
 /**
  *

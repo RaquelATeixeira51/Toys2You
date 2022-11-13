@@ -10,6 +10,6 @@ public interface ProdutoDAO {
     public void insert(String urlConexao, String login, String senha, Produto produto,int tipo);
     public void update(String urlConexao, String login, String senha, int id, String nome, String descricao, double valor, Tipo tipo );
     public void delete(String urlConexao, String login, String senha, int id);
-    public List<String> getNome(String urlConexao, String login, String senha, String nomeProduto);
-    public List<String> getId(String urlConexao, String login, String senha, int id);
+    public List<Produto> getNome(String urlConexao, String login, String senha, String nomeProduto);
+    public List<Produto> getId(String urlConexao, String login, String senha, int id);
 }

@@ -9,5 +9,5 @@ public interface TipoDAO {
     public void insert(String urlConexao, String login, String senha, Tipo tipo);
     public void update(String urlConexao, String login, String senha, int id, String tipo);
     public void delete(String urlConexao, String login, String senha, int id);
-    public List<String> getAll(String urlConexao, String login, String senha);
+    public List<Tipo> getAll(String urlConexao, String login, String senha, int id);
 }

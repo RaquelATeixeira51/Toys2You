@@ -4,7 +4,12 @@
  */
 package com.senac.toys2you.View;
 
+import com.senac.toys2you.Controller.Toys2YouController;
+import com.senac.toys2you.Model.Cliente;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,6 +17,8 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class TelaClienteConsulta extends javax.swing.JInternalFrame {
 
+    Cliente cli = new Cliente();
+    Toys2YouController toy = new Toys2YouController();
     /**
      * Creates new form TelaClienteConsulta
      */
@@ -35,7 +42,7 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtDS_CPF = new javax.swing.JFormattedTextField();
         cmdINCLUIR = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -65,7 +72,7 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtDS_CPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -78,6 +85,11 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
         });
 
         jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nome:");
 
@@ -92,7 +104,7 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jFormattedTextField1)
+                    .addComponent(txtDS_CPF)
                     .addComponent(txtDS_NOME, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +123,7 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDS_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(cmdINCLUIR, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -122,22 +134,49 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDS_NOMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDS_NOMEActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtDS_NOMEActionPerformed
 
     private void cmdINCLUIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdINCLUIRActionPerformed
         new TelaClienteAlterar().show(true);
     }//GEN-LAST:event_cmdINCLUIRActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String txt = txtDS_NOME.getText();
+        String txt2 = txtDS_CPF.getText();
+        
+        if(txt.length() == 0){
+            List<Cliente> lista =  toy.consultaCliente(txt, txt2);
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+            modelo.setRowCount(0);
+             for (Cliente item : lista) {
+                 modelo.addRow(new String[]{item.getNome(),
+                                             item.getCpf(),
+                                         });
+             }
+        }else{
+            List<Cliente> lista = toy.consultaCliente(txt,txt2);
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+            modelo.setRowCount(0);
+             for (Cliente item : lista) {
+                modelo.addRow(new String[]{item.getNome(),
+                                             item.getCpf(),
+                                         });
+             }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdINCLUIR;
     private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JFormattedTextField txtDS_CPF;
     private javax.swing.JTextField txtDS_NOME;
     // End of variables declaration//GEN-END:variables
 }

@@ -77,11 +77,11 @@ public class Toys2YouController {
         clienteDAOImpl.delete(urlConexao, login, senha, id);
     }
 
-    public List<String> consultaCliente(String nome, String cpf){
+    public List<Cliente> consultaCliente(String nome, String cpf){
         ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
         clienteDAOImpl.connect(urlConexao, login, senha);
 
-        List<String> r = clienteDAOImpl.getClientes(urlConexao, login, senha, nome, cpf);
+        List<Cliente> r = clienteDAOImpl.getClientes(urlConexao, login, senha, nome, cpf);
         return r;
     }
 
@@ -106,16 +106,16 @@ public class Toys2YouController {
         produtoDAOImpl.delete(urlConexao, login, senha, id);
     }
 
-    public List<String> ConsultaProduto(String nomeProduto, int id){
+    public List<Produto> ConsultaProduto(String nomeProduto, int id){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
         produtoDAOImpl.connect(urlConexao, login, senha);
 
         if(nomeProduto!=null){
-            List<String> r = produtoDAOImpl.getNome(urlConexao, login, senha, nomeProduto);
+            List<Produto> r = produtoDAOImpl.getNome(urlConexao, login, senha, nomeProduto);
             return r;
         }
 
-        List<String> r = produtoDAOImpl.getId(urlConexao, login, senha, id);
+        List<Produto> r = produtoDAOImpl.getId(urlConexao, login, senha, id);
         return r;
     }
     
@@ -140,16 +140,16 @@ public class Toys2YouController {
         estoqueDAOImpl.delete(urlConexao, login, senha, id);
     }
 
-    public List<String> ConsultaProdutoEstoque(String nomeProduto, int id){
+    public List<Produto> ConsultaProdutoEstoque(String nomeProduto, int id){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
         produtoDAOImpl.connect(urlConexao, login, senha);
 
         if(nomeProduto!=null){
-            List<String> r = produtoDAOImpl.getNome(urlConexao, login, senha, nomeProduto);
+            List<Produto> r = produtoDAOImpl.getNome(urlConexao, login, senha, nomeProduto);
             return r;
         }
 
-        List<String> r = produtoDAOImpl.getId(urlConexao, login, senha, id);
+        List<Produto> r = produtoDAOImpl.getId(urlConexao, login, senha, id);
         return r;
     }
 
@@ -175,16 +175,16 @@ public class Toys2YouController {
         tipoDAOImpl.delete(urlConexao, login, senha, id);
     }
 
-    public List<String> ConsultaTipo(String nomeTipo, int id){
-        ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
+    public List<Tipo> ConsultaTipo(String nomeTipo, int id){
+        TipoDAOImpl produtoDAOImpl = new TipoDAOImpl();
         produtoDAOImpl.connect(urlConexao, login, senha);
 
         if(nomeTipo!=null){
-            List<String> r = produtoDAOImpl.getNome(urlConexao, login, senha, nomeTipo);
+            List<Tipo> r = produtoDAOImpl.getAll(urlConexao, login, senha, id);
             return r;
         }
 
-        List<String> r = produtoDAOImpl.getId(urlConexao, login, senha, id);
+        List<Tipo> r = produtoDAOImpl.getAll(urlConexao, login, senha, id);
         return r;
     }
     public String getUrl(){

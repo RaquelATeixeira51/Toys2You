@@ -1,5 +1,6 @@
 package com.senac.toys2you.DAO;
 
+import com.senac.toys2you.Model.Cliente;
 import com.senac.toys2you.Model.Tipo;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -73,9 +74,9 @@ public class TipoDAOImpl implements TipoDAO{
             System.out.println(e.getMessage());
        }
     }
-    public List<String> getAll(String urlConexao, String login, String senha) {
+    public List<Tipo> getAll(String urlConexao, String login, String senha, int id) {
         String sql = "SELECT * FROM TB_TIPO";
-        List<String> l = new ArrayList<String>();
+        List<Tipo> l = new ArrayList<Tipo>();
 
         try{
             Connection conexao = connect(urlConexao, login, senha);
@@ -83,7 +84,10 @@ public class TipoDAOImpl implements TipoDAO{
             ResultSet resultado = statement.executeQuery(sql);
 
             while(resultado.next()){
-                l.add(resultado.getString("PK_ID"));
+                Tipo novoObjeto = new Tipo();
+                    novoObjeto.setId(resultado.getInt("PK_ID"));
+                    novoObjeto.setTipo(resultado.getString("DS_NOME"));
+                l.add(novoObjeto);
             }
         } catch(SQLException e){
             System.out.println(e.getMessage());
