@@ -7,6 +7,7 @@ package com.senac.toys2you.View;
 import com.senac.toys2you.Controller.Toys2YouController;
 import javax.swing.JOptionPane;
 import com.senac.toys2you.Model.Cliente;
+import java.util.List;
 
 /**
  *
@@ -23,7 +24,26 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
     }
 
     TelaClienteAlterar(Cliente obj) {
+        List<Cliente> c = toy.consultaCliente("", "",obj.getId());
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_CPF.setText(String.valueOf(c.get(2)));
+        /*txtDT_NASCIMENTO.setText(String.valueOf(c.get(3)));*/
+        txtDS_EMAIL.setText(String.valueOf(c.get(3)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        txtDS_NOME.setText(String.valueOf(c.get(0)));
+        
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
     /**

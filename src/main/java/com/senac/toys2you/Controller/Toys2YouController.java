@@ -77,11 +77,11 @@ public class Toys2YouController {
         clienteDAOImpl.delete(urlConexao, login, senha, id);
     }
 
-    public List<Cliente> consultaCliente(String nome, String cpf){
+    public List<Cliente> consultaCliente(String nome, String cpf,int id){
         ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
         clienteDAOImpl.connect(urlConexao, login, senha);
 
-        List<Cliente> r = clienteDAOImpl.getClientes(urlConexao, login, senha, nome, cpf);
+        List<Cliente> r = clienteDAOImpl.getClientes(urlConexao, login, senha, nome, cpf,id);
         return r;
     }
 

@@ -60,14 +60,34 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nome", "CPF"
+                "Id.", "Nome", "CPF"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         try {
@@ -172,12 +192,26 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
 
             modelo.setRowCount(0);
              for (Cliente item : lista) {
-                modelo.addRow(new String[]{item.getNome(),
+                modelo.addRow(new String[]{String.valueOf(item.getId()),
+                                             item.getNome(),
                                              item.getCpf(),
                                          });
              }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        if(evt.getKeyCode() == 10){
+            int linhaSelecionada = jTable1.getSelectedRow();
+            if(linhaSelecionada>=0){
+                Cliente obj = new Cliente();
+                obj.setId(Integer.parseInt(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+
+                TelaClienteAlterar novaTela = new TelaClienteAlterar(obj);
+                novaTela.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_jTable1KeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

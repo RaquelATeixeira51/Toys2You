@@ -102,7 +102,7 @@ public class ClienteDAOImpl implements ClienteDAO{
     }
 
     @Override
-    public List<Cliente> getClientes(String urlConexao, String login, String senha, String nome, String cpf){
+    public List<Cliente> getClientes(String urlConexao, String login, String senha, String nome, String cpf,int id){
         List<Cliente> l = new ArrayList<Cliente>();
         String sql = "SELECT * FROM TB_CLIENTE";
         
@@ -110,6 +110,8 @@ public class ClienteDAOImpl implements ClienteDAO{
             sql = "SELECT * FROM TB_CLIENTE WHERE DS_NOME=" + nome;
         }else if(cpf != null && nome == null || nome.isEmpty()){
             sql = "SELECT * FROM TB_CLIENTE WHERE NR_CPF=" + cpf;
+        }else if(id > 0){
+                sql = sql + "WHERE PK_ID =" + String.valueOf(id);
         }else{
             sql = "SELECT * FROM TB_CLIENTE WHERE NR_CPF=" + cpf + " AND DS_NOME=" + nome;
         }
@@ -123,6 +125,18 @@ public class ClienteDAOImpl implements ClienteDAO{
                 Cliente novoObjeto = new Cliente();
                     novoObjeto.setNome(resultado.getString("DS_NOME"));
                     novoObjeto.setCpf(resultado.getString("DS_CPF"));
+                    novoObjeto.setBairro(resultado.getString("DS_BAIRRO"));
+                    novoObjeto.setCep(resultado.getString("DS_CEP"));
+                    novoObjeto.setEstado(resultado.getString("DS_ESTADO"));
+                    novoObjeto.setCidade(resultado.getString("DS_CIDADE"));
+                    novoObjeto.setDataNascimento(String.valueOf(resultado.getString("DT_NASCIMENTO")));
+                    novoObjeto.setEmail(resultado.getString("DS_EMAIL"));
+                    novoObjeto.setEstadoCivil(resultado.getInt("TG_ESTCIVIL"));
+                    novoObjeto.setNumero(resultado.getInt("NR_NUMERO"));
+                    novoObjeto.setSexo(resultado.getInt("TG_SEXO"));
+                    novoObjeto.setTelefone(resultado.getString("DS_TELEFONE"));
+                    
+                    
                 l.add(novoObjeto);
             }
         } catch(SQLException e){
