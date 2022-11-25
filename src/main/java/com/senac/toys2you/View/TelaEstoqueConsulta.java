@@ -131,7 +131,7 @@ public class TelaEstoqueConsulta extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String txt = txtFK_TIPOPRODUTO.getText();
-        int txt2 = Integer.valueOf(txtDS_NOMEPRODUTO.getText());
+        String txt2 = txtDS_NOMEPRODUTO.getText();
         
         if(txt.length() == 0){
             List<Produto> lista =  toy.ConsultaProdutoEstoque(txt, txt2);

@@ -11,7 +11,7 @@ import java.util.Date;
  * @author raquel.ateixeira3
  */
 public class Produto {
-    private int id;
+    private String id = "";
     private String nome;
     private String descricao;
     private double valor;
@@ -22,7 +22,7 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(int id, String nome, String descricao, double valor, Tipo tipo, double tamanho, Date validade) {
+    public Produto(String id, String nome, String descricao, double valor, Tipo tipo, double tamanho, Date validade) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -48,7 +48,7 @@ public class Produto {
         this.validade = validade;
     }
     
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -70,7 +70,7 @@ public class Produto {
     
     
     
-    public int getId() {
+    public String getId() {
         return id;
     }
 

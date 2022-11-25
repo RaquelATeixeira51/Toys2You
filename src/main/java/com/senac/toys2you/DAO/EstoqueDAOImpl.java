@@ -36,7 +36,7 @@ public class EstoqueDAOImpl implements EstoqueDAO{
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
             // preparedStatement.setInt(1, estoque.getId());
-            preparedStatement.setInt(1, estoque.getProduto().getId());
+            preparedStatement.setString(1, estoque.getProduto().getId());
             preparedStatement.setInt(2, estoque.getQtProduto());
 
             preparedStatement.executeUpdate();
@@ -53,7 +53,7 @@ public class EstoqueDAOImpl implements EstoqueDAO{
             Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
-            preparedStatement.setInt(1, produto.getId());
+            preparedStatement.setString(1, produto.getId());
             preparedStatement.setInt(2, qtProduto);
             preparedStatement.setInt(3, id);
 

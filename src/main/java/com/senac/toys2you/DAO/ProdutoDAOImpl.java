@@ -46,7 +46,7 @@ public class ProdutoDAOImpl implements ProdutoDAO{
         }
     }
     
-    public void update(String urlConexao, String login, String senha, int id, String nome, String descricao, double valor, Tipo tipo) {
+    public void update(String urlConexao, String login, String senha, String id, String nome, String descricao, double valor, Tipo tipo) {
         String sql = "UPDATE TB_PRODUTO set DS_PRODUTO = ?, VL_TOTAL = ? , DS_DESCRICAO = ? , TG_TIPO = ? where PK_ID = ?";
 
         
@@ -59,7 +59,7 @@ public class ProdutoDAOImpl implements ProdutoDAO{
             preparedStatement.setDouble(2, valor);
             preparedStatement.setString(3, descricao);
             preparedStatement.setInt(4,tipo.getId());
-            preparedStatement.setInt(5, id);
+            preparedStatement.setString(5, id);
 
             preparedStatement.executeUpdate();
         } catch(SQLException e){
@@ -89,7 +89,7 @@ public class ProdutoDAOImpl implements ProdutoDAO{
         String sql = "SELECT * FROM TB_PRODUTO";
         List<Produto> l = new ArrayList<Produto>();
         if(nomeProduto != null){
-            sql = "SELECT * FROM TB_PRODUTO WHERE DS_PRODUTO=" + nomeProduto;
+            sql = "SELECT * FROM TB_PRODUTO WHERE DS_PRODUTO= '" + nomeProduto + "'";
         }
 
         try{
@@ -99,8 +99,9 @@ public class ProdutoDAOImpl implements ProdutoDAO{
 
             while(resultado.next()){
                     Produto novoObjeto = new Produto();
-                    novoObjeto.setNome(resultado.getString("DS_NOME"));
-                    novoObjeto.setId(resultado.getInt("PK_ID"));
+                    novoObjeto.setId(resultado.getString("PK_ID"));
+                    novoObjeto.setNome(resultado.getString("DS_PRODUTO"));
+                    
                     l.add(novoObjeto);            }
         } catch(SQLException e){
             System.out.println(e.getMessage());
@@ -109,10 +110,10 @@ public class ProdutoDAOImpl implements ProdutoDAO{
     }
 
     @Override
-    public List<Produto> getId(String urlConexao, String login, String senha, int id) {
+    public List<Produto> getId(String urlConexao, String login, String senha, String id) {
         String sql = "SELECT * FROM TB_PRODUTO";
         List<Produto> l = new ArrayList<Produto>();
-        if(id != 0){
+        if(!id.isBlank()){
             sql = "SELECT * FROM TB_PRODUTO WHERE PK_ID=" + id;
         }
 
@@ -123,8 +124,8 @@ public class ProdutoDAOImpl implements ProdutoDAO{
 
             while(resultado.next()){
                  Produto novoObjeto = new Produto();
-                    novoObjeto.setNome(resultado.getString("DS_NOME"));
-                    novoObjeto.setId(resultado.getInt("PK_ID"));
+                    novoObjeto.setId(resultado.getString("PK_ID"));
+                    novoObjeto.setNome(resultado.getString("DS_PRODUTO"));
                 l.add(novoObjeto);
             }
         } catch(SQLException e){

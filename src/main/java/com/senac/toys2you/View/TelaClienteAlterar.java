@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.senac.toys2you.View;
 
 import com.senac.toys2you.Controller.Toys2YouController;
@@ -10,17 +6,11 @@ import com.senac.toys2you.Model.Cliente;
 import java.sql.Date;
 import java.util.List;
 
-/**
- *
- * @author natalia.dlima
- */
 public class TelaClienteAlterar extends javax.swing.JFrame {
     Cliente cli = new Cliente();
     Toys2YouController toy = new Toys2YouController();
     Cliente t = null;
-    /**
-     * Creates new form TelaClienteAlterar
-     */
+
     public TelaClienteAlterar() {
         initComponents();  
     }

@@ -93,7 +93,7 @@ public class Toys2YouController {
         produtoDAOImpl.insert(urlConexao, login, senha, produto, tipo);
     }
 
-    public void alteraProduto(int id, String nome, String descricao, double valor, Tipo tipo ){
+    public void alteraProduto(String id, String nome, String descricao, double valor, Tipo tipo ){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
         produtoDAOImpl.connect(urlConexao, login, senha);
 
@@ -107,11 +107,11 @@ public class Toys2YouController {
         produtoDAOImpl.delete(urlConexao, login, senha, id);
     }
 
-    public List<Produto> ConsultaProduto(String nomeProduto, int id){
+    public List<Produto> ConsultaProduto(String nomeProduto, String id){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
         produtoDAOImpl.connect(urlConexao, login, senha);
 
-        if(nomeProduto!=null){
+        if(!nomeProduto.isBlank()){
             List<Produto> r = produtoDAOImpl.getNome(urlConexao, login, senha, nomeProduto);
             return r;
         }
@@ -141,7 +141,7 @@ public class Toys2YouController {
         estoqueDAOImpl.delete(urlConexao, login, senha, id);
     }
 
-    public List<Produto> ConsultaProdutoEstoque(String nomeProduto, int id){
+    public List<Produto> ConsultaProdutoEstoque(String nomeProduto, String id){
         ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
         produtoDAOImpl.connect(urlConexao, login, senha);
 
