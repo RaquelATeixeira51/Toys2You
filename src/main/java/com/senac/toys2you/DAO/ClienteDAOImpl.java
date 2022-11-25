@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,24 +32,28 @@ public class ClienteDAOImpl implements ClienteDAO{
     
     @Override
     public void insert(String urlConexao, String login, String senha, Cliente cliente) {
-        String sql = "INSERT INTO TB_CLIENTE(DS_NOME , NR_CPF, NR_NUMEROEND, DS_BAIRRO, DS_CIDADE, TG_ESTADO, NR_CEP, TG_SEXO, DT_NASCIMENTO, TG_ESTCIVIL, DS_EMAIL, NR_TELEFONE) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TB_CLIENTE(DS_NOME , NR_CPF, NR_NUMEROEND, DS_BAIRRO, DS_CIDADE, TG_ESTADO, NR_CEP, TG_SEXO, DT_NASCIMENTO, TG_ESTCIVIL, DS_EMAIL, NR_TELEFONE) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
         
         try{
             Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+            LocalDate data = LocalDate.parse(cliente.getDataNascimento(), formato); 
+            System.out.println(data);
 
-            // preparedStatement.setInt(1, estoque.getId());
             preparedStatement.setString(1, cliente.getNome());
             preparedStatement.setString(2, cliente.getCpf());
             preparedStatement.setInt(3, cliente.getNumero());
-            preparedStatement.setString(4, cliente.getCidade());
-            preparedStatement.setString(5, cliente.getEstado());
-            preparedStatement.setString(6, cliente.getCep());
-            preparedStatement.setInt(7, cliente.getSexo());
-            preparedStatement.setString(8,cliente.getDataNascimento());
-            preparedStatement.setInt(9, cliente.getEstadoCivil());
-            preparedStatement.setString(10, cliente.getEmail());
-            preparedStatement.setString(11, cliente.getTelefone());
+            preparedStatement.setString(4, cliente.getBairro());
+            preparedStatement.setString(5, cliente.getCidade());
+            preparedStatement.setString(6, cliente.getEstado());
+            preparedStatement.setString(7, cliente.getCep());
+            preparedStatement.setInt(8, cliente.getSexo());
+            preparedStatement.setDate(9,Date.valueOf(data));
+            preparedStatement.setInt(10, cliente.getEstadoCivil());
+            preparedStatement.setString(11, cliente.getEmail());
+            preparedStatement.setString(12, cliente.getTelefone());
             
             preparedStatement.executeUpdate();
         } catch(SQLException e){
@@ -105,14 +111,16 @@ public class ClienteDAOImpl implements ClienteDAO{
     public List<Cliente> getClientes(String urlConexao, String login, String senha, String nome, String cpf,int id){
         List<Cliente> l = new ArrayList<Cliente>();
         String sql = "SELECT * FROM TB_CLIENTE";
+        cpf = cpf.replace(".", "");
+        cpf = cpf.replace("-", "");
         
-        if(nome != null && cpf == null || cpf.isEmpty()){
+        if(!nome.isBlank() && cpf.isBlank()){
             sql = "SELECT * FROM TB_CLIENTE WHERE DS_NOME=" + nome;
-        }else if(cpf != null && nome == null || nome.isEmpty()){
+        }else if(cpf != null && nome == null || nome.isBlank() && !cpf.isBlank()){
             sql = "SELECT * FROM TB_CLIENTE WHERE NR_CPF=" + cpf;
         }else if(id > 0){
-                sql = sql + "WHERE PK_ID =" + String.valueOf(id);
-        }else{
+                sql = sql + " WHERE PK_ID =" + String.valueOf(id);
+        }else if(nome != null && cpf != null && !cpf.isBlank()){
             sql = "SELECT * FROM TB_CLIENTE WHERE NR_CPF=" + cpf + " AND DS_NOME=" + nome;
         }
 
@@ -123,18 +131,20 @@ public class ClienteDAOImpl implements ClienteDAO{
 
             while(resultado.next()){
                 Cliente novoObjeto = new Cliente();
+                    novoObjeto.setId(resultado.getInt("PK_ID"));
                     novoObjeto.setNome(resultado.getString("DS_NOME"));
-                    novoObjeto.setCpf(resultado.getString("DS_CPF"));
+                    novoObjeto.setCpf(resultado.getString("NR_CPF"));
                     novoObjeto.setBairro(resultado.getString("DS_BAIRRO"));
-                    novoObjeto.setCep(resultado.getString("DS_CEP"));
-                    novoObjeto.setEstado(resultado.getString("DS_ESTADO"));
+                    novoObjeto.setCep(resultado.getString("NR_CEP"));
+                    novoObjeto.setEstado(resultado.getString("TG_ESTADO"));
                     novoObjeto.setCidade(resultado.getString("DS_CIDADE"));
                     novoObjeto.setDataNascimento(String.valueOf(resultado.getString("DT_NASCIMENTO")));
                     novoObjeto.setEmail(resultado.getString("DS_EMAIL"));
                     novoObjeto.setEstadoCivil(resultado.getInt("TG_ESTCIVIL"));
-                    novoObjeto.setNumero(resultado.getInt("NR_NUMERO"));
+                    novoObjeto.setNumero(resultado.getInt("NR_NUMEROEND"));
                     novoObjeto.setSexo(resultado.getInt("TG_SEXO"));
-                    novoObjeto.setTelefone(resultado.getString("DS_TELEFONE"));
+                    novoObjeto.setTelefone(resultado.getString("NR_TELEFONE"));
+                    
                     
                     
                 l.add(novoObjeto);

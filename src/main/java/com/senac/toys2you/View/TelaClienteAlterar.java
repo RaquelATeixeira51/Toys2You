@@ -7,6 +7,7 @@ package com.senac.toys2you.View;
 import com.senac.toys2you.Controller.Toys2YouController;
 import javax.swing.JOptionPane;
 import com.senac.toys2you.Model.Cliente;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -16,34 +17,32 @@ import java.util.List;
 public class TelaClienteAlterar extends javax.swing.JFrame {
     Cliente cli = new Cliente();
     Toys2YouController toy = new Toys2YouController();
+    Cliente t = null;
     /**
      * Creates new form TelaClienteAlterar
      */
     public TelaClienteAlterar() {
-        initComponents();
+        initComponents();  
     }
 
-    TelaClienteAlterar(Cliente obj) {
+    public TelaClienteAlterar(Cliente obj) {
+        initComponents();
+        t = obj;
         List<Cliente> c = toy.consultaCliente("", "",obj.getId());
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_CPF.setText(String.valueOf(c.get(2)));
-        /*txtDT_NASCIMENTO.setText(String.valueOf(c.get(3)));*/
-        txtDS_EMAIL.setText(String.valueOf(c.get(3)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        txtDS_NOME.setText(String.valueOf(c.get(0)));
-        
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        
+        this.txtDS_NOME.setText(String.valueOf(c.get(0).getNome()));
+        this.txtDS_CPF.setText(String.valueOf(c.get(0).getCpf()));
+        this.txtDT_NASCIMENTO.setText(c.get(0).getDataNascimento());
+        this.txtDS_EMAIL.setText(String.valueOf(c.get(0).getEmail()));
+        this.txtDS_ENDERECO.setText(String.valueOf(c.get(0)));
+        this.txtDS_BAIRRO.setText(String.valueOf(c.get(0).getBairro()));
+        this.txtCEP.setText(String.valueOf(c.get(0).getCep()));
+        this.txtDS_ESTADO.setText(String.valueOf(c.get(0).getEstado()));
+        this.txtDS_CIDADE.setText(String.valueOf(c.get(0).getCidade()));
+        this.txtDS_EMAIL.setText(String.valueOf(c.get(0).getEmail()));
+        cboESTADOCIVIL.setSelectedIndex(c.get(0).getEstadoCivil()-1);
+        this.txtNR_NUMEROEND.setText(String.valueOf(c.get(0).getNumero()));
+        this.txtTELEFONE.setText(String.valueOf(c.get(0).getTelefone()));
+               
     }
 
     /**
@@ -446,7 +445,10 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
         cli.setSexo(sexo);
         cli.setTelefone(tel);
         
-        toy.adicionaCliente(cli);
+        if(t.getId() > 0){
+            toy.alteraCliente(t.getId(), cli.getNome(), cli.getCpf(), cli.getNumero(), cli.getBairro(), cli.getCidade(), 0, Integer.valueOf(cli.getCep().replace("-","")), cli.getSexo(), Date.valueOf(t.getDataNascimento()), cli.getEstadoCivil(), cli.getEmail(), Integer.valueOf(cli.getTelefone()));
+        }else
+            toy.adicionaCliente(cli);
         
         
         new TelaClienteAlterar().show(false);

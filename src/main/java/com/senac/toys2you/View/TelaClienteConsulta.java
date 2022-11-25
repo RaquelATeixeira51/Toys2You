@@ -176,18 +176,19 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
         String txt = txtDS_NOME.getText();
         String txt2 = txtDS_CPF.getText();
         
-        if(txt.length() == 0){
-            List<Cliente> lista =  toy.consultaCliente(txt, txt2);
+        if(txt.length() == 0 && txt2.length() == 0){
+            List<Cliente> lista =  toy.consultaCliente(txt, txt2,0);
             DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
 
             modelo.setRowCount(0);
              for (Cliente item : lista) {
-                 modelo.addRow(new String[]{item.getNome(),
+                 modelo.addRow(new String[]{String.valueOf(item.getId()),
+                                             item.getNome(),
                                              item.getCpf(),
                                          });
              }
         }else{
-            List<Cliente> lista = toy.consultaCliente(txt,txt2);
+            List<Cliente> lista = toy.consultaCliente(txt,txt2,0);
             DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
 
             modelo.setRowCount(0);
@@ -203,6 +204,7 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
         if(evt.getKeyCode() == 10){
             int linhaSelecionada = jTable1.getSelectedRow();
+
             if(linhaSelecionada>=0){
                 Cliente obj = new Cliente();
                 obj.setId(Integer.parseInt(jTable1.getValueAt(linhaSelecionada, 0).toString()));

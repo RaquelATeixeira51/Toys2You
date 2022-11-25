@@ -31,7 +31,8 @@ import com.senac.toys2you.Model.Venda;
 public class Toys2YouController {
     public static String urlConexao = "jdbc:mysql://localhost:3306/toys2you";
     public static String login = "root";
-    public static String senha = "P@$$w0rd";
+    public static String senha = "";
+    /*P@$$w0rd*/
 
     public void adicionaUsuario(Usuario usuario){
         UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
@@ -257,6 +258,8 @@ public class Toys2YouController {
     }
     
     public static boolean ValidarCPF (String CPF) {
+        CPF = CPF.replace(".","" );
+        CPF = CPF.replace("-","" );
         if (CPF.equals("00000000000") ||
             CPF.equals("11111111111") ||
             CPF.equals("22222222222") || CPF.equals("33333333333") ||
