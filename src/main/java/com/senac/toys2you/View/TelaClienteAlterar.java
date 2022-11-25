@@ -441,7 +441,7 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
             toy.adicionaCliente(cli);
         
         
-        new TelaClienteAlterar().show(false);
+        new TelaClienteAlterar().dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtDS_NOMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDS_NOMEActionPerformed

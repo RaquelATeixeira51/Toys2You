@@ -4,6 +4,14 @@
  */
 package com.senac.toys2you.View;
 
+import com.senac.toys2you.Controller.Toys2YouController;
+import com.senac.toys2you.DAO.ProdutoDAOImpl;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Dinareli
@@ -16,7 +24,9 @@ public class TelaRelatorio extends javax.swing.JFrame {
     public TelaRelatorio() {
         initComponents();
     }
-
+    
+    Toys2YouController toy = new Toys2YouController();
+    ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -164,7 +174,18 @@ public class TelaRelatorio extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDT_FINALActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String sql = "SELECT "
+                + "CLI.DS_NOME,VEN.PK_ID,VEN.DT_PAGAMENTO,VEN.VL_TOTAL "
+                + "FROM TB_CLIENTE AS CLI\n" +
+                "LEFT JOIN TB_VENDA VEN ON VEN.FK_CLIENTE = CLI.PK_ID";
+        
+        Connection conexao = produtoDAOImpl.connect(toy.getUrl(), "root", "");
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
