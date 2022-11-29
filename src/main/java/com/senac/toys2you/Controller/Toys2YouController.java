@@ -27,6 +27,7 @@ import com.senac.toys2you.Model.Venda;
 /**
  *
  * @author raquel.ateixeira3
+ * @see Controller com todas as funções com banco
  */
 public class Toys2YouController {
     public static String urlConexao = "jdbc:mysql://localhost:3306/toys2you";
@@ -353,20 +354,20 @@ public class Toys2YouController {
         movimentoDAOImpl.deleteVenda(urlConexao, login, senha, id);
     }
 
-    public List<String> consultaMovimento(int venda){
+    public List<Movimento> consultaMovimento(int venda){
         MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
         movimentoDAOImpl.connect(urlConexao, login, senha);
 
-        List<String> r = movimentoDAOImpl.getMovimentoVenda(urlConexao, login, senha, venda);
+        List<Movimento> r = movimentoDAOImpl.getMovimentoVenda(urlConexao, login, senha, venda);
        
         return r;
     }
     
-    public List<String> consultaVenda(int venda){
+    public List<Venda> consultaVenda(int venda){
         MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
         movimentoDAOImpl.connect(urlConexao, login, senha);
 
-        List<String> r = movimentoDAOImpl.getVenda(urlConexao, login, senha, venda);
+        List<Venda> r = movimentoDAOImpl.getVenda(urlConexao, login, senha, venda);
        
         return r;
     }

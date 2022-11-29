@@ -4,11 +4,19 @@
  */
 package com.senac.toys2you.View;
 
+import com.senac.toys2you.Controller.Toys2YouController;
+import com.senac.toys2you.Model.Movimento;
+import com.senac.toys2you.Model.Produto;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author luzin
  */
 public class TelaFrenteCaixa extends javax.swing.JFrame {
+
+    Toys2YouController toy = new Toys2YouController();
 
     /**
      * Creates new form TelaFrenteCaixa
@@ -48,6 +56,17 @@ public class TelaFrenteCaixa extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Codigo:");
 
+        txtDS_CODIGO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDS_CODIGOActionPerformed(evt);
+            }
+        });
+        txtDS_CODIGO.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDS_CODIGOKeyPressed(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Quantidade:");
 
@@ -82,7 +101,6 @@ public class TelaFrenteCaixa extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Total Geral:");
 
-        imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone.png"))); // NOI18N
         imagem.setText("toy");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -171,6 +189,57 @@ public class TelaFrenteCaixa extends javax.swing.JFrame {
     private void txtDS_QUANTIDADEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDS_QUANTIDADEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDS_QUANTIDADEActionPerformed
+
+    private void txtDS_CODIGOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDS_CODIGOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDS_CODIGOActionPerformed
+
+    private void txtDS_CODIGOKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDS_CODIGOKeyPressed
+        if(evt.getKeyCode() == 10){
+                Produto obj = new Produto();
+                
+                if(!txtDS_CODIGO.getText().isBlank()){
+                    List<Produto> lista =  toy.ConsultaProduto("", txtDS_CODIGO.getText() );
+                    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+                    modelo.setRowCount(modelo.getColumnCount());
+                     for (Produto item : lista) {
+                         txtDS_VALORUNITARIO.setText(String.valueOf(item.getValor()));
+                         txtDS_VALORTOTAL.setText(String.valueOf(item.getValor()));
+                         txtDS_TOTALVENDA.setText(String.valueOf(Integer.valueOf(txtDS_TOTALVENDA.getText()) + item.getValor()));
+                         txtDS_VOLUME.setText(String.valueOf(Integer.valueOf(txtDS_VOLUME.getText()) + 1));
+                         
+                         modelo.addRow(new String[]{String.valueOf(item.getId()),
+                                            item.getNome(),
+                                            "1",
+                                            String.valueOf(item.getValor()),
+                                            String.valueOf(item.getValor())
+                                         });
+                         Movimento mov = new Movimento();
+                         
+                         mov.setProduto(Integer.valueOf(txtDS_CODIGO.getText()));
+                         mov.setQtProduto(1);
+                         mov.setTotal(Integer.valueOf(txtDS_CODIGO.getText()));
+                        toy.adicionaMovimento(mov);
+                         
+                     }
+                    }else{
+                        List<Produto> lista = toy.ConsultaProduto("", txtDS_CODIGO.getText() );
+                        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+                        modelo.setRowCount(0);
+                         for (Produto item : lista) {
+                            txtDS_VALORUNITARIO.setText(String.valueOf(item.getValor()));
+                            txtDS_VALORTOTAL.setText(String.valueOf(item.getValor()));
+                            txtDS_TOTALVENDA.setText(String.valueOf(Integer.valueOf(txtDS_TOTALVENDA.getText()) + item.getValor()));
+                            txtDS_VOLUME.setText(String.valueOf(Integer.valueOf(txtDS_VOLUME.getText()) + 1));
+                         }
+                    }   
+        }
+        if(evt.getKeyCode() == 27){
+            
+        }
+    }//GEN-LAST:event_txtDS_CODIGOKeyPressed
 
     /**
      * @param args the command line arguments

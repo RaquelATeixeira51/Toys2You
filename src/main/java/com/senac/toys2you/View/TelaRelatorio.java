@@ -6,11 +6,14 @@ package com.senac.toys2you.View;
 
 import com.senac.toys2you.Controller.Toys2YouController;
 import com.senac.toys2you.DAO.ProdutoDAOImpl;
+import com.senac.toys2you.Model.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -181,7 +184,22 @@ public class TelaRelatorio extends javax.swing.JFrame {
         
         Connection conexao = produtoDAOImpl.connect(toy.getUrl(), "root", "");
         try {
-            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            PreparedStatement statement = conexao.prepareStatement(sql);
+            
+            String[][] l = null; 
+            ResultSet resultado = statement.executeQuery(sql);
+            int temp = 0;
+            while(resultado.next()){
+                l[temp][0] = resultado.getString("DS_NOME");
+                l[temp][1] = resultado.getString("PK_ID");
+                l[temp][2] = resultado.getString("DT_PAGAMENTO");
+                l[temp][4] = resultado.getString("VL_TOTAL");   
+            }
+            
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            for (String[] item : l) {
+                modelo.addRow(item);
+             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

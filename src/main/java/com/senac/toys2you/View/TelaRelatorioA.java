@@ -4,17 +4,30 @@
  */
 package com.senac.toys2you.View;
 
+import com.senac.toys2you.Controller.Toys2YouController;
+import com.senac.toys2you.Model.Cliente;
+import com.senac.toys2you.Model.Movimento;
+import com.senac.toys2you.Model.Venda;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author Dinareli
  */
 public class TelaRelatorioA extends javax.swing.JFrame {
 
+    static int venda = 0;
+    Venda v = new Venda();
+    Toys2YouController toy = new Toys2YouController();
+
     /**
      * Creates new form TelaRelatorioA
      */
-    public TelaRelatorioA() {
+    public TelaRelatorioA(int i) {
         initComponents();
+        venda = i;
     }
 
     /**
@@ -68,14 +81,26 @@ public class TelaRelatorioA extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setEditable(false);
 
@@ -143,6 +168,28 @@ public class TelaRelatorioA extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        List<Venda> ven = toy.consultaVenda(venda);
+        txtNR_VENDA.setText(String.valueOf(ven.get(0).getId()));
+        txtDS_NOME.setText(ven.get(0).getCli());
+        txtDS_NOME.setText(String.valueOf(ven.get(0).getDataPagamento()));
+        
+        List<Movimento> mov = toy.consultaMovimento(venda);
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+            modelo.setRowCount(0);
+             for (Movimento item : mov) {
+                modelo.addRow(new String[]{String.valueOf(item.getProduto()),
+                                             String.valueOf(item.getQtProduto()),
+                                             String.valueOf(item.getTotal()),
+                                             String.valueOf(item.getSomado())
+                                         });
+             }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -173,7 +220,7 @@ public class TelaRelatorioA extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaRelatorioA().setVisible(true);
+                new TelaRelatorioA(venda).setVisible(true);
             }
         });
     }

@@ -4,14 +4,23 @@
  */
 package com.senac.toys2you.View;
 
+import com.senac.toys2you.Controller.Toys2YouController;
+import com.senac.toys2you.DAO.ProdutoDAOImpl;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author rsouz
  */
 public class TelaRelatorioT extends javax.swing.JInternalFrame {
 
+    Toys2YouController toy = new Toys2YouController();
+    ProdutoDAOImpl produtoDAOImpl = new ProdutoDAOImpl();
     /**
      * Creates new form TelaRelatorioT
      */
@@ -161,15 +170,45 @@ public class TelaRelatorioT extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDT_FINALActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String sql = "SELECT "
+                + "CLI.DS_NOME,VEN.PK_ID,VEN.DT_PAGAMENTO,VEN.VL_TOTAL "
+                + "FROM TB_CLIENTE AS CLI\n" +
+                "LEFT JOIN TB_VENDA VEN ON VEN.FK_CLIENTE = CLI.PK_ID";
+        
+        Connection conexao = produtoDAOImpl.connect(toy.getUrl(), "root", "");
+        try {
+            PreparedStatement statement = conexao.prepareStatement(sql);
+            
+            String[][] l = null; 
+            ResultSet resultado = statement.executeQuery(sql);
+            int temp = 0;
+            while(resultado.next()){
+                l[temp][0] = resultado.getString("DS_NOME");
+                l[temp][1] = resultado.getString("PK_ID");
+                l[temp][2] = resultado.getString("DT_PAGAMENTO");
+                l[temp][4] = resultado.getString("VL_TOTAL");   
+            }
+            
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            for (String[] item : l) {
+                modelo.addRow(item);
+             }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
-        // TODO add your handling code here:
+        int linhaSelecionada = jTable1.getSelectedRow();
+        
         if(evt.getKeyCode() == 10){
-            TelaRelatorioA telaNew = new TelaRelatorioA();
-            telaNew.setVisible(true);
-            telaNew.setExtendedState(TelaPrincipal.MAXIMIZED_BOTH);
+            if(linhaSelecionada>=0){
+                int i = (int) jTable1.getValueAt(linhaSelecionada, 1);
+                TelaRelatorioA telaNew = new TelaRelatorioA(i);
+                telaNew.setVisible(true);
+                telaNew.setExtendedState(TelaPrincipal.MAXIMIZED_BOTH);
+            }
+            
         }
     }//GEN-LAST:event_jTable1KeyPressed
 

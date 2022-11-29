@@ -26,6 +26,15 @@ public class Venda {
     private int numCartao;
     private int cliente;
     private int vendedor;
+    private String cli;
+
+    public String getCli() {
+        return cli;
+    }
+
+    public void setCli(String cli) {
+        this.cli = cli;
+    }
 
     public Venda() {
     }
@@ -44,6 +53,14 @@ public class Venda {
         this.vencimentoPagamento = vencimentoPagamento;
         this.parcelas = parcelas;
         this.numCartao = numCartao;
+    }
+
+    public void setCliente(int cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setVendedor(int vendedor) {
+        this.vendedor = vendedor;
     }
     
     public int getVendedor(){

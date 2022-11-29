@@ -107,16 +107,25 @@ public class MovimentoDAOImpl implements MovimentoDAO{
     }
 
     @Override
-    public List<String> getMovimentoVenda(String urlConexao, String login, String senha, int venda) {
-        String sql = "SELECT * FROM TB_MOVIMENTO WHERE FK_VENDA =" + venda;
-        List<String> l = new ArrayList<String>();
+    public List<Movimento> getMovimentoVenda(String urlConexao, String login, String senha, int venda) {
+        String sql = "SELECT *,(VL_TOTAL * QT_PRODUTO) AS VL_SOMADO FROM TB_MOVIMENTO WHERE FK_VENDA =" + venda;
+        List<Movimento> l = new ArrayList<String>();
         try{
             Connection conexao = connect(urlConexao, login, senha);
             Statement statement = conexao.createStatement();
             ResultSet resultado = statement.executeQuery(sql);
 
             while(resultado.next()){
-                l.add(resultado.getString("PK_ID"));
+                Movimento novoObjeto = new Movimento();
+                novoObjeto.setId(resultado.getInt("PK_ID"));
+                novoObjeto.setProduto(resultado.getInt("FK_PRODUTO"));
+                novoObjeto.setQtProduto(resultado.getInt("QT_PRODUTO"));
+                novoObjeto.setTotal(resultado.getDouble("VL_TOTAL"));
+                novoObjeto.setSomado(resultado.getDouble("VL_SOMADO"));
+                
+                
+                
+                l.add(novoObjeto);
             }
         } catch(SQLException e){
             System.out.println(e.getMessage());
@@ -125,20 +134,32 @@ public class MovimentoDAOImpl implements MovimentoDAO{
     }
     
     @Override
-    public List<String> getVenda(String urlConexao, String login, String senha, int venda) {
-        String sql = "SELECT * FROM TB_VENDA";
+    public List<Venda> getVenda(String urlConexao, String login, String senha, int venda) {
+        String sql = "SELECT VEN.*,CLI.DS_NOME "
+                + "FROM TB_VENDA AS VEN "
+                + "LEFT JOIN TB_CLIENTE AS CLI ON CLI.PK_ID = VEN.FK_CLIENTE";
         
         if (venda > 0){
             sql = sql +  "WHERE FK_VENDA =" + venda;
         }
-        List<String> l = new ArrayList<String>();
+        List<Venda> l = new ArrayList<Venda>();
         try{
             Connection conexao = connect(urlConexao, login, senha);
             Statement statement = conexao.createStatement();
             ResultSet resultado = statement.executeQuery(sql);
 
             while(resultado.next()){
-                l.add(resultado.getString("PK_ID"));
+                Venda novoObjeto = new Venda();
+                novoObjeto.setId(resultado.getInt("PK_ID"));
+                novoObjeto.setCliente(resultado.getInt("FK_CLIENTE"));
+                novoObjeto.setVendedor(resultado.getInt("FK_VENDEDOR"));
+                novoObjeto.setValorTotal(resultado.getDouble("VL_TOTAL"));
+                novoObjeto.setCli(resultado.getString("DS_NOME"));
+                novoObjeto.setDataPagamento(resultado.getDate("DT_PAGAMENTO"));
+                
+                
+                
+                l.add(novoObjeto);
             }
         } catch(SQLException e){
             System.out.println(e.getMessage());

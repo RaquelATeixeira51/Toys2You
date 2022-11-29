@@ -17,6 +17,15 @@ public class Movimento {
     private int qtProduto;
     private Tipo tipo;
     private Date dataVenda;
+    private double somado;
+
+    public double getSomado() {
+        return somado;
+    }
+
+    public void setSomado(double somado) {
+        this.somado = somado;
+    }
 
     public Movimento() {
     }

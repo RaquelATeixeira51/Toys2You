@@ -12,7 +12,7 @@ public interface MovimentoDAO {
     public void delete(String urlConexao, String login, String senha, int id);
     public void deleteVenda(String urlConexao, String login, String senha, int id);
     public List<String> getMovimentoVenda(String urlConexao, String login, String senha, int venda);
-    public List<String> getVenda(String urlConexao, String login, String senha, int venda);
+    public List<Venda> getVenda(String urlConexao, String login, String senha, int venda);
     public void insertVenda(String urlConexao, String login, String senha, Venda venda);
 
 }

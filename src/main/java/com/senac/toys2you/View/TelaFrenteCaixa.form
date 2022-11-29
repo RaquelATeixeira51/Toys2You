@@ -125,6 +125,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDS_CODIGO">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDS_CODIGOActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDS_CODIGOKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -235,9 +239,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="imagem">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Icone.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="toy"/>
       </Properties>
     </Component>

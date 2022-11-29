@@ -4,14 +4,22 @@
  */
 package com.senac.toys2you.View;
 
+import com.senac.toys2you.Controller.Toys2YouController;
+import com.senac.toys2you.Model.Cliente;
+import com.senac.toys2you.Model.Movimento;
+import com.senac.toys2you.Model.Produto;
+import java.util.List;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author rsouz
+ * @
  */
 public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
 
+    Toys2YouController toy = new Toys2YouController();
     /**
      * Creates new form TelaFrenteCaixaPDV
      */
@@ -44,6 +52,8 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         txtDS_VALORTOTAL = new javax.swing.JTextField();
         txtDS_TOTALVENDA = new javax.swing.JTextField();
+        txtDS_VOLUME = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -61,6 +71,17 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Codigo:");
 
+        txtDS_CODIGO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDS_CODIGOActionPerformed(evt);
+            }
+        });
+        txtDS_CODIGO.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDS_CODIGOKeyPressed(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Quantidade:");
 
@@ -70,6 +91,8 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Valor Unitario:");
 
+        txtDS_QUANTIDADE.setText("1");
+        txtDS_QUANTIDADE.setEnabled(false);
         txtDS_QUANTIDADE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDS_QUANTIDADEActionPerformed(evt);
@@ -79,8 +102,19 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel6.setText("Lista de compras");
 
+        txtDS_VALORUNITARIO.setEnabled(false);
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Valor Total:");
+
+        txtDS_VALORTOTAL.setEnabled(false);
+
+        txtDS_TOTALVENDA.setEnabled(false);
+
+        txtDS_VOLUME.setEnabled(false);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setText("Itens:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,15 +135,21 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
                         .addComponent(jLabel6)
-                        .addContainerGap(243, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(7, 7, 7))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(txtDS_VOLUME, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(141, 141, 141)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(txtDS_TOTALVENDA, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1))
-                        .addGap(7, 7, 7))))
+                            .addComponent(txtDS_TOTALVENDA, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(189, 189, 189))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,9 +176,13 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
                         .addComponent(txtDS_VALORTOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDS_TOTALVENDA, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtDS_TOTALVENDA, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(txtDS_VOLUME))
                 .addContainerGap(161, Short.MAX_VALUE))
         );
 
@@ -149,6 +193,57 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDS_QUANTIDADEActionPerformed
 
+    private void txtDS_CODIGOKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDS_CODIGOKeyPressed
+        if(evt.getKeyCode() == 10){
+                Produto obj = new Produto();
+                
+                if(!txtDS_CODIGO.getText().isBlank()){
+                    List<Produto> lista =  toy.ConsultaProduto("", txtDS_CODIGO.getText() );
+                    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+                    modelo.setRowCount(modelo.getColumnCount());
+                     for (Produto item : lista) {
+                         txtDS_VALORUNITARIO.setText(String.valueOf(item.getValor()));
+                         txtDS_VALORTOTAL.setText(String.valueOf(item.getValor()));
+                         txtDS_TOTALVENDA.setText(String.valueOf(Integer.valueOf(txtDS_TOTALVENDA.getText()) + item.getValor()));
+                         txtDS_VOLUME.setText(String.valueOf(Integer.valueOf(txtDS_VOLUME.getText()) + 1));
+                         
+                         modelo.addRow(new String[]{String.valueOf(item.getId()),
+                                            item.getNome(),
+                                            "1",
+                                            String.valueOf(item.getValor()),
+                                            String.valueOf(item.getValor())
+                                         });
+                         Movimento mov = new Movimento();
+                         
+                         mov.setProduto(Integer.valueOf(txtDS_CODIGO.getText()));
+                         mov.setQtProduto(1);
+                         mov.setTotal(Integer.valueOf(txtDS_CODIGO.getText()));
+                        toy.adicionaMovimento(mov);
+                         
+                     }
+                    }else{
+                        List<Produto> lista = toy.ConsultaProduto("", txtDS_CODIGO.getText() );
+                        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+                        modelo.setRowCount(0);
+                         for (Produto item : lista) {
+                            txtDS_VALORUNITARIO.setText(String.valueOf(item.getValor()));
+                            txtDS_VALORTOTAL.setText(String.valueOf(item.getValor()));
+                            txtDS_TOTALVENDA.setText(String.valueOf(Integer.valueOf(txtDS_TOTALVENDA.getText()) + item.getValor()));
+                            txtDS_VOLUME.setText(String.valueOf(Integer.valueOf(txtDS_VOLUME.getText()) + 1));
+                         }
+                    }   
+        }
+        if(evt.getKeyCode() == 27){
+            
+        }
+    }//GEN-LAST:event_txtDS_CODIGOKeyPressed
+
+    private void txtDS_CODIGOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDS_CODIGOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDS_CODIGOActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -157,6 +252,7 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtDS_CODIGO;
@@ -164,5 +260,6 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtDS_TOTALVENDA;
     private javax.swing.JTextField txtDS_VALORTOTAL;
     private javax.swing.JTextField txtDS_VALORUNITARIO;
+    private javax.swing.JTextField txtDS_VOLUME;
     // End of variables declaration//GEN-END:variables
 }
