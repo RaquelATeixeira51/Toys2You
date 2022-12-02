@@ -308,10 +308,14 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
                 PreparedStatement statement = conexao.prepareStatement(sql);
 
                 ResultSet resultado = statement.executeQuery(sql);
-                int temp = 0;
-                while(resultado.next()){
-                    venda = venda.valueOf(resultado.getString("PK_ID"));
-                }   
+                
+               
+                venda = Integer.valueOf(resultado.getString("PK_ID"));
+                
+                if(venda < 5){
+                    venda = 5;
+                }
+                
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }

@@ -12,7 +12,7 @@ import java.util.Locale;
 public class TelaClienteAlterar extends javax.swing.JFrame {
     Cliente cli = new Cliente();
     Toys2YouController toy = new Toys2YouController();
-    Cliente t = null;
+    Cliente t = new Cliente();
 
     public TelaClienteAlterar() {
         initComponents();  

@@ -173,7 +173,7 @@ public class TelaRelatorioT extends javax.swing.JInternalFrame {
                 + "FROM TB_CLIENTE AS CLI\n" +
                 "LEFT JOIN TB_VENDA VEN ON VEN.FK_CLIENTE = CLI.PK_ID";
         
-        Connection conexao = produtoDAOImpl.connect(toy.getUrl(), "root", "");
+        Connection conexao = produtoDAOImpl.connect(toy.getUrl(), "root", "P@$$w0rd");
         try {
             PreparedStatement statement = conexao.prepareStatement(sql);
             

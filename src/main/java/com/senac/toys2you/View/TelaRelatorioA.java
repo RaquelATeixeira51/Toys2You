@@ -173,7 +173,7 @@ public class TelaRelatorioA extends javax.swing.JFrame {
         List<Venda> ven = toy.consultaVenda(venda);
         //txtNR_VENDA.setText(String.valueOf(ven.get(0).getId()));
         txtDS_NOME.setText(ven.get(0).getCli());
-        txtDS_NOME.setText(String.valueOf(ven.get(0).getDataPagamento()));
+        txtDT_VENDA.setText(String.valueOf(ven.get(0).getDataPagamento()));
         
         List<Movimento> mov = toy.consultaMovimento(venda);
         

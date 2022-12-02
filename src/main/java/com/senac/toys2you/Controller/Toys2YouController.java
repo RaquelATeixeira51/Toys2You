@@ -32,7 +32,7 @@ import com.senac.toys2you.Model.Venda;
 public class Toys2YouController {
     public static String urlConexao = "jdbc:mysql://localhost:3306/toys2you";
     public static String login = "root";
-    public static String senha = "";
+    public static String senha = "P@$$w0rd";
     /*P@$$w0rd*/
 
     public void adicionaUsuario(Usuario usuario){
