@@ -62,13 +62,17 @@ public class ClienteDAOImpl implements ClienteDAO{
     }
     
     @Override
-    public void update(String urlConexao, String login, String senha, int id, String nome, String cpf , int nrEndereco, String bairro, String cidade, int estado, int cep , int sexo, java.util.Date nascimento, int estCivil, String email, int telefone) {
-        String sql = "UPDATE TB_PRODUTO set DS_NOME = ? , NR_CPF = ?, NR_NUMEROEND = ?, DS_BAIRRO = ?, DS_CIDADE = ?, TG_ESTADO = ?, NR_CEP = ?, TG_SEXO = ?, DT_NASCIMENTO = ?, TG_ESTCIVIL = ?, DS_EMAIL = ?, NR_TELEFONE = ? where PK_ID = ?";
+    public void update(String urlConexao, String login, String senha, int id, String nome, String cpf , int nrEndereco, String bairro, String cidade, int estado, String cep , int sexo, java.util.Date nascimento, int estCivil, String email, int telefone) {
+        String sql = "UPDATE TB_CLIENTE set DS_NOME = ? , NR_CPF = ?, NR_NUMEROEND = ?, DS_BAIRRO = ?, DS_CIDADE = ?, TG_ESTADO = ?, NR_CEP = ?, TG_SEXO = ?, DT_NASCIMENTO = ?, TG_ESTCIVIL = ?, DS_EMAIL = ?, NR_TELEFONE = ? where PK_ID = ?";
 
         try{
             Connection conexao = connect(urlConexao, login, senha);
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+            LocalDate data = LocalDate.parse(String.valueOf(nascimento), formato); 
+            System.out.println(data);
+            
             // preparedStatement.setInt(1, estoque.getId());
             preparedStatement.setString(1, nome);
             preparedStatement.setString(2, cpf);
@@ -77,9 +81,9 @@ public class ClienteDAOImpl implements ClienteDAO{
             preparedStatement.setString(5, bairro);
             preparedStatement.setString(6, cidade);
             preparedStatement.setInt(7, estado);
-            preparedStatement.setInt(7, cep);
+            preparedStatement.setString(7, cep);
             preparedStatement.setInt(7, sexo);
-            preparedStatement.setDate(8, (Date) nascimento);
+            preparedStatement.setDate(8, Date.valueOf(data));
             preparedStatement.setInt(9, estCivil);
             preparedStatement.setString(10, email);
             preparedStatement.setInt(11, telefone);

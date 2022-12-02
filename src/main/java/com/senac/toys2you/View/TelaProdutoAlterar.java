@@ -31,7 +31,7 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         
         this.txtPK_ID.setText(c.get(0).getId());
         this.txtDS_NOMEPRODUTO.setText(c.get(0).getNome());
-        this.txtFK_TIPO.setText(c.get(0).getTipo().getTipo());
+        //this.txtFK_TIPO.setText(c.get(0).getTipo().getTipo());
         this.txtVL_VALOR.setText(String.valueOf(c.get(0).getValor()));
     }
 

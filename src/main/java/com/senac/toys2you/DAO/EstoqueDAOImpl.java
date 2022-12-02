@@ -47,7 +47,7 @@ public class EstoqueDAOImpl implements EstoqueDAO{
 
     @Override
     public void update(String urlConexao, String login, String senha, int id, Produto produto, int qtProduto) {
-        String sql = "UPDATE tb_estoque set fk_produto = ?, qt_estoque = ? where pk_id = ?";
+        String sql = "UPDATE tb_estoque set fk_produto = ?, qt_estoque = ? where fk_produto = ?";
 
         try{
             Connection conexao = connect(urlConexao, login, senha);
@@ -55,7 +55,7 @@ public class EstoqueDAOImpl implements EstoqueDAO{
 
             preparedStatement.setString(1, produto.getId());
             preparedStatement.setInt(2, qtProduto);
-            preparedStatement.setInt(3, id);
+            preparedStatement.setString(3, produto.getId());
 
             preparedStatement.executeUpdate();
         } catch(SQLException e){

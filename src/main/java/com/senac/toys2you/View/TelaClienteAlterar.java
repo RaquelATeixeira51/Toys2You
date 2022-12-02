@@ -4,7 +4,10 @@ import com.senac.toys2you.Controller.Toys2YouController;
 import javax.swing.JOptionPane;
 import com.senac.toys2you.Model.Cliente;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 public class TelaClienteAlterar extends javax.swing.JFrame {
     Cliente cli = new Cliente();
@@ -19,17 +22,21 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
         initComponents();
         t = obj;
         List<Cliente> c = toy.consultaCliente("", "",obj.getId());
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
+	String teste = String.valueOf(formatter.format(Date.valueOf(c.get(0).getDataNascimento())));
+        
         this.txtDS_NOME.setText(String.valueOf(c.get(0).getNome()));
         this.txtDS_CPF.setText(String.valueOf(c.get(0).getCpf()));
-        this.txtDT_NASCIMENTO.setText(c.get(0).getDataNascimento());
+        this.txtDT_NASCIMENTO.setText(teste);
         this.txtDS_EMAIL.setText(String.valueOf(c.get(0).getEmail()));
-        this.txtDS_ENDERECO.setText(String.valueOf(c.get(0)));
+        this.txtDS_ENDERECO.setText(String.valueOf(c.get(0).getNome()));
         this.txtDS_BAIRRO.setText(String.valueOf(c.get(0).getBairro()));
         this.txtCEP.setText(String.valueOf(c.get(0).getCep()));
         this.txtDS_ESTADO.setText(String.valueOf(c.get(0).getEstado()));
         this.txtDS_CIDADE.setText(String.valueOf(c.get(0).getCidade()));
         this.txtDS_EMAIL.setText(String.valueOf(c.get(0).getEmail()));
-        cboESTADOCIVIL.setSelectedIndex(c.get(0).getEstadoCivil()-1);
+        this.cboESTADOCIVIL.setSelectedIndex(c.get(0).getEstadoCivil()-1);
         this.txtNR_NUMEROEND.setText(String.valueOf(c.get(0).getNumero()));
         this.txtTELEFONE.setText(String.valueOf(c.get(0).getTelefone()));
                
@@ -435,8 +442,9 @@ public class TelaClienteAlterar extends javax.swing.JFrame {
         cli.setSexo(sexo);
         cli.setTelefone(tel);
         
+        String tele = cli.getTelefone().replace("-", "").replace("(", "").replace(")", "").replace(" ", "");
         if(t.getId() > 0){
-            toy.alteraCliente(t.getId(), cli.getNome(), cli.getCpf(), cli.getNumero(), cli.getBairro(), cli.getCidade(), 0, Integer.valueOf(cli.getCep().replace("-","")), cli.getSexo(), Date.valueOf(t.getDataNascimento()), cli.getEstadoCivil(), cli.getEmail(), Integer.valueOf(cli.getTelefone()));
+            toy.alteraCliente(t.getId(), cli.getNome(), cli.getCpf(), cli.getNumero(), cli.getBairro(), cli.getCidade(), 0, cli.getCep(), cli.getSexo(), Date.valueOf(t.getDataNascimento()), estadoCivil, cli.getEmail(), Integer.valueOf(tele));
         }else
             toy.adicionaCliente(cli);
         

@@ -74,6 +74,11 @@ public class TelaEstoqueConsulta extends javax.swing.JInternalFrame {
                 "ID", "Nome do Produto"
             }
         ));
+        jTable2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable2KeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,32 +135,46 @@ public class TelaEstoqueConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String txt = txtFK_TIPOPRODUTO.getText();
-        String txt2 = txtDS_NOMEPRODUTO.getText();
+        String txt = txtDS_NOMEPRODUTO.getText();
+        String txt2 = txtFK_TIPOPRODUTO.getText();
         
-        if(txt.length() == 0){
-            List<Produto> lista =  toy.ConsultaProdutoEstoque(txt, txt2);
+        if(txt.isBlank() && txt2.isBlank()){
+            List<Produto> lista =  toy.ConsultaProduto(txt2, txt);
             DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
 
             modelo.setRowCount(0);
              for (Produto item : lista) {
-                 modelo.addRow(new String[]{item.getNome(),
-                                             String.valueOf(item.getId()),
+                 modelo.addRow(new String[]{String.valueOf(item.getId()),
+                                            item.getNome()
                                          });
              }
         }else{
-            List<Produto> lista = toy.ConsultaProdutoEstoque(txt,txt2);
+            List<Produto> lista = toy.ConsultaProduto(txt2, txt);
             DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
 
             modelo.setRowCount(0);
              for (Produto item : lista) {
-                modelo.addRow(new String[]{item.getNome(),
-                                           String.valueOf(item.getId()),
+                modelo.addRow(new String[]{String.valueOf(item.getId()),
+                                            item.getNome()
                                          });
              }
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable2KeyPressed
+        if(evt.getKeyCode() == 10){
+            int linhaSelecionada = jTable2.getSelectedRow();
+            
+            if(linhaSelecionada>=0){
+            Produto obj = new Produto();
+            obj.setId(jTable2.getValueAt(linhaSelecionada, 0).toString());
+            
+            TelaEstoqueAlterar novaTela = new TelaEstoqueAlterar(obj);
+            novaTela.setVisible(true);
+        }
+        }
+    }//GEN-LAST:event_jTable2KeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

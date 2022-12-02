@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 /**
@@ -54,10 +55,7 @@ public class TelaRelatorioT extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nome", "Valor", "Data", "Nº de Vendas"
@@ -179,20 +177,23 @@ public class TelaRelatorioT extends javax.swing.JInternalFrame {
         try {
             PreparedStatement statement = conexao.prepareStatement(sql);
             
-            String[][] l = null; 
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            ArrayList<String> l = new ArrayList();
             ResultSet resultado = statement.executeQuery(sql);
+            modelo.setRowCount(0);
+
             int temp = 0;
             while(resultado.next()){
-                l[temp][0] = resultado.getString("DS_NOME");
-                l[temp][1] = resultado.getString("PK_ID");
-                l[temp][2] = resultado.getString("DT_PAGAMENTO");
-                l[temp][4] = resultado.getString("VL_TOTAL");   
+                String[] a = new String[10];
+                a[0] = resultado.getString("DS_NOME");
+                a[1] = resultado.getString("PK_ID");
+                a[2] = resultado.getString("DT_PAGAMENTO");
+                a[3] = resultado.getString("VL_TOTAL");
+                
+                modelo.addRow(a);
+                temp++;
             }
-            
-            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-            for (String[] item : l) {
-                modelo.addRow(item);
-             }
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -203,7 +204,7 @@ public class TelaRelatorioT extends javax.swing.JInternalFrame {
         
         if(evt.getKeyCode() == 10){
             if(linhaSelecionada>=0){
-                int i = (int) jTable1.getValueAt(linhaSelecionada, 1);
+                int i = Integer.valueOf(String.valueOf(jTable1.getValueAt(linhaSelecionada, 1)));
                 TelaRelatorioA telaNew = new TelaRelatorioA(i);
                 telaNew.setVisible(true);
                 telaNew.setExtendedState(TelaPrincipal.MAXIMIZED_BOTH);

@@ -15,7 +15,7 @@ public class Movimento {
     private int produto;
     private double total;
     private int qtProduto;
-    private Tipo tipo;
+    private String tipo;
     private Date dataVenda;
     private double somado;
 
@@ -30,7 +30,7 @@ public class Movimento {
     public Movimento() {
     }
 
-    public Movimento(int id, double total, int qtProduto, Tipo tipo, Date dataVenda) {
+    public Movimento(int id, double total, int qtProduto, String tipo, Date dataVenda) {
         this.id = id;
         this.total = total;
         this.qtProduto = qtProduto;
@@ -63,7 +63,7 @@ public class Movimento {
         return qtProduto;
     }
 
-    public Tipo getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
@@ -83,9 +83,8 @@ public class Movimento {
         this.qtProduto = qtProduto;
     }
 
-    public void setTipo(Tipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
     
 }

@@ -101,6 +101,8 @@ public class ProdutoDAOImpl implements ProdutoDAO{
                     Produto novoObjeto = new Produto();
                     novoObjeto.setId(resultado.getString("PK_ID"));
                     novoObjeto.setNome(resultado.getString("DS_PRODUTO"));
+                    novoObjeto.setValor(resultado.getDouble("VL_TOTAL"));
+                    novoObjeto.setDescricao(resultado.getString("DS_DESCRICAO"));
                     
                     l.add(novoObjeto);            }
         } catch(SQLException e){
@@ -126,6 +128,8 @@ public class ProdutoDAOImpl implements ProdutoDAO{
                  Produto novoObjeto = new Produto();
                     novoObjeto.setId(resultado.getString("PK_ID"));
                     novoObjeto.setNome(resultado.getString("DS_PRODUTO"));
+                    novoObjeto.setValor(resultado.getDouble("VL_TOTAL"));
+                    novoObjeto.setDescricao(resultado.getString("DS_DESCRICAO"));
                 l.add(novoObjeto);
             }
         } catch(SQLException e){

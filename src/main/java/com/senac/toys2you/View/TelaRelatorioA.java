@@ -28,6 +28,7 @@ public class TelaRelatorioA extends javax.swing.JFrame {
     public TelaRelatorioA(int i) {
         initComponents();
         venda = i;
+        txtNR_VENDA.setText(String.valueOf(i));
     }
 
     /**
@@ -170,7 +171,7 @@ public class TelaRelatorioA extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         List<Venda> ven = toy.consultaVenda(venda);
-        txtNR_VENDA.setText(String.valueOf(ven.get(0).getId()));
+        //txtNR_VENDA.setText(String.valueOf(ven.get(0).getId()));
         txtDS_NOME.setText(ven.get(0).getCli());
         txtDS_NOME.setText(String.valueOf(ven.get(0).getDataPagamento()));
         

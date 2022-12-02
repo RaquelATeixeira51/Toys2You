@@ -65,7 +65,7 @@ public class Toys2YouController {
         clienteDAOImpl.insert(urlConexao, login, senha, cliente);
     }
 
-    public void alteraCliente(int id, String nome, String cpf , int nrEndereco, String bairro, String cidade, int estado, int cep , int sexo, Date nascimento, int estCivil, String email, int telefone){
+    public void alteraCliente(int id, String nome, String cpf , int nrEndereco, String bairro, String cidade, int estado, String cep , int sexo, Date nascimento, int estCivil, String email, int telefone){
         ClienteDAOImpl clienteDAOImpl = new ClienteDAOImpl();
         clienteDAOImpl.connect(urlConexao, login, senha);
 
@@ -327,17 +327,24 @@ public class Toys2YouController {
         logDAO.insert(urlConexao, login, senha, erro);
     }
         
-    public void adicionaMovimento(Movimento movimento){
+    public void adicionaMovimento(Movimento movimento, int venda){
         MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
         movimentoDAOImpl.connect(urlConexao, login, senha);
 
-        movimentoDAOImpl.insert(urlConexao, login, senha, movimento);
+        movimentoDAOImpl.insert(urlConexao, login, senha, movimento, venda);
     }
     public void adicionaVenda(Venda venda){
         MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
         movimentoDAOImpl.connect(urlConexao, login, senha);
 
         movimentoDAOImpl.insertVenda(urlConexao, login, senha, venda);
+    }
+    
+    public void alteraVenda(int venda, double valor){
+        MovimentoDAOImpl movimentoDAOImpl = new MovimentoDAOImpl();
+        movimentoDAOImpl.connect(urlConexao, login, senha);
+
+        movimentoDAOImpl.alterVenda(urlConexao, login, senha, venda,valor);
     }
 
     public void deletaMovimento(int id){
