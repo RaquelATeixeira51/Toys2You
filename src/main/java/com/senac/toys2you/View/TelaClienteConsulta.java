@@ -213,6 +213,17 @@ public class TelaClienteConsulta extends javax.swing.JInternalFrame {
                 novaTela.setVisible(true);
             }
         }
+        
+        if(evt.getKeyCode() == 127){
+            int linhaSelecionada = jTable1.getSelectedRow();
+            
+            if(linhaSelecionada>=0){
+            Cliente obj = new Cliente();
+            obj.setId(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            
+            toy.deletaProduto(Integer.valueOf(String.valueOf(jTable1.getValueAt(linhaSelecionada, 0))));
+        }
+        }
     }//GEN-LAST:event_jTable1KeyPressed
 
 

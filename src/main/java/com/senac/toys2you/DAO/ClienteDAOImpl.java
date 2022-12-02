@@ -105,7 +105,7 @@ public class ClienteDAOImpl implements ClienteDAO{
 
             preparedStatement.setInt(1, id);
             
-            preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
         } catch(SQLException e){
             toy.logErro(e.getMessage());
         }

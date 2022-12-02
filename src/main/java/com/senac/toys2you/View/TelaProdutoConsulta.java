@@ -192,6 +192,17 @@ public class TelaProdutoConsulta extends javax.swing.JInternalFrame {
         }
         }
         
+        if(evt.getKeyCode() == 127){
+            int linhaSelecionada = jTable1.getSelectedRow();
+            
+            if(linhaSelecionada>=0){
+            Produto obj = new Produto();
+            obj.setId(jTable1.getValueAt(linhaSelecionada, 0).toString());
+            
+            toy.deletaProduto(Integer.valueOf(String.valueOf(jTable1.getValueAt(linhaSelecionada, 0))));
+        }
+        }
+        
     }//GEN-LAST:event_jTable1KeyPressed
 
 
