@@ -312,8 +312,8 @@ public class TelaFrenteCaixaPDV extends javax.swing.JInternalFrame {
                
                 venda = Integer.valueOf(resultado.getString("PK_ID"));
                 
-                if(venda < 5){
-                    venda = 5;
+                if(venda < 6){
+                    venda = 6;
                 }
                 
             } catch (SQLException ex) {
